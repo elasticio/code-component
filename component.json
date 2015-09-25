@@ -1,0 +1,33 @@
+{
+    "title": "hello world nodejs",
+    "description": "Hello world component for the elastic.io platform",
+    "credentials": {
+        "fields": {
+            "name": {
+                "label": "Your name",
+                "required": true,
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "getHello": {
+            "main": "./lib/triggers/getHello.js",
+            "type": "polling",
+            "title": "Query Hello",
+            "metadata": {
+                "out": "./lib/schemas/getHello.out.json"
+            }
+        }
+    },
+    "actions": {
+        "updateHello": {
+            "main": "./lib/actions/updateHello.js",
+            "title": "Update Hello",
+            "metadata": {
+                "in": "./lib/schemas/updateHello.in.json",
+                "out": "./lib/schemas/updateHello.out.json"
+            }
+        }
+    }
+}

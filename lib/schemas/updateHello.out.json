@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "greeting": {
+            "type": "string",
+            "required": true,
+            "title": "Greeting"
+        },
+        "originalGreeting": {
+            "type": "string",
+            "required": true,
+            "title": "Original Greeting"
+        }
+    }
+}

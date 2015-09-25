@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "greeting": {
+            "type": "string",
+            "required": true,
+            "title": "Greeting"
+        }
+    }
+}

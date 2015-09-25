@@ -1,0 +1,19 @@
+{
+    "name": "hello-world",
+    "version": "0.0.3",
+    "description": "elastic.io hello world component",
+    "scripts": {
+        "test": "exit 0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:elasticio/hello-world-nodejs.git"
+    },
+    "author": "elastic.io GmbH",
+    "license": "BSD-2-Clause",
+
+    "dependencies": {
+        "q": "^1.4.1",
+        "elasticio-node": "0.0.5"
+    }
+}
