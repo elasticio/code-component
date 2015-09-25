@@ -11,7 +11,6 @@
     },
     "author": "elastic.io GmbH",
     "license": "BSD-2-Clause",
-
     "dependencies": {
         "q": "^1.4.1",
         "elasticio-node": "0.0.5"
