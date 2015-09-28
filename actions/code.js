@@ -8,7 +8,6 @@ exports.process = function (msg, conf) {
 
     var context = {
         msg:msg,
-        next:next,
         require: require,
         console: console,
         message : messages,
