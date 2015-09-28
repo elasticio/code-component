@@ -13,7 +13,7 @@ exports.process = function (msg, conf) {
         messages : messages,
         elasticio: elasticio,
         Q : Q,
-        this : this
+        self : this
     };
 
     try {
