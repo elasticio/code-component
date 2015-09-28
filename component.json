@@ -6,7 +6,7 @@
             "viewClass":"CodeFieldView",
             "label":"Code",
             "required":true,
-            "default" : "self.emit(messages.newMessageWithBody({message: 'hello world'}});\nself.emit('end');"
+            "default" : "// Please note only synchronious code is supported here\nthis.emit(messages.newMessageWithBody({message: 'hello world'}));\n// No need to emit end"
         }
     },
     "actions":{
