@@ -10,7 +10,7 @@ exports.process = function (msg, conf) {
         msg:msg,
         require: require,
         console: console,
-        message : messages,
+        messages : messages,
         elasticio: elasticio,
         Q : Q,
         this : this
