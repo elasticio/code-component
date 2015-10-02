@@ -56,7 +56,7 @@ describe('ES5 code block', function() {
 
 });
 
-xdescribe('ES6 Code Block', function () {
+describe('ES6 Code Block', function () {
 
     it('Promise that resolves', function (done) {
         "use strict";
@@ -70,5 +70,12 @@ xdescribe('ES6 Code Block', function () {
         });
     });
 
-
+    it('Promise that resolves 2', function (done) {
+        "use strict";
+        testFn("function run(message) { console.log('Hello promise!'); return new Promise(function(accept, reject) { accept('Hello code!'); }); }"
+            , function (executor) {
+            expect(executor.data.length).toEqual(1);
+            done();
+        });
+    });
 });
