@@ -70,7 +70,7 @@ describe('ES5 code block', function() {
 
 });
 
-describe('ES6 Code Block', function () {
+describe('ES6 Code Block with promises', function () {
 
     it('Promise that resolves', function (done) {
         "use strict";
@@ -93,8 +93,19 @@ describe('ES6 Code Block', function () {
         });
     });
 
+});
+
+describe('ES6 Code Block with generator', function() {
+
     it('Simple generator', function (done) {
-        "use strict";
+        testFn("function* run(message) { console.log('Hello generator!'); }"
+            , function (executor) {
+                expect(executor.data.length).toEqual(0);
+                done();
+            });
+    });
+
+    xit('Simple generator returning data', function (done) {
         testFn("function* run(message) { console.log('Hello generator!'); }"
             , function (executor) {
                 expect(executor.data.length).toEqual(1);

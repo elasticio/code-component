@@ -35,7 +35,9 @@ exports.process = function (msg, conf) {
             debug('Returned value is a promise, will evaluate it');
             result.then(function (resolved) {
                 debug('Promise resolved');
-                that.emit('data', elasticio.messages.newMessageWithBody(resolved));
+                if (resolved) {
+                    that.emit('data', elasticio.messages.newMessageWithBody(resolved));
+                }
                 that.emit('end');
             }).catch(function (err) {
                 debug('Promise failed');
