@@ -26,9 +26,10 @@ function testFn(code, cb) {
     }]);
 }
 
-describe('ES6 code tests', function() {
-    it('Generator function recognition', function() {
-        var generator = function* () {};
+describe('ES6 code tests', function () {
+    it('Generator function recognition', function () {
+        var generator = function* () {
+        };
         expect(typeof generator).toEqual('function');
         expect(typeof generator.apply).toEqual('function');
         var result = generator();
@@ -37,7 +38,7 @@ describe('ES6 code tests', function() {
     });
 });
 
-describe('ES5 code block', function() {
+describe('ES5 code block', function () {
     "use strict";
 
 
@@ -88,14 +89,14 @@ describe('ES6 Code Block with promises', function () {
         "use strict";
         testFn("function run(message) { console.log('Hello promise!'); return new Promise(function(accept, reject) { accept('Hello code!'); }); }"
             , function (executor) {
-            expect(executor.data.length).toEqual(1);
-            done();
-        });
+                expect(executor.data.length).toEqual(1);
+                done();
+            });
     });
 
 });
 
-describe('ES6 Code Block with generator', function() {
+describe('ES6 Code Block with generator', function () {
 
     it('Simple generator', function (done) {
         testFn("function* run(message) { console.log('Hello generator!'); }"
@@ -105,8 +106,8 @@ describe('ES6 Code Block with generator', function() {
             });
     });
 
-    xit('Simple generator returning data', function (done) {
-        testFn("function* run(message) { console.log('Hello generator!'); }"
+    it('Simple generator returning data', function (done) {
+        testFn("function* run(message) { console.log('Hello generator!'); return 'Resolved!'; }"
             , function (executor) {
                 expect(executor.data.length).toEqual(1);
                 done();
