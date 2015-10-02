@@ -114,4 +114,30 @@ describe('ES6 Code Block with generator', function () {
             });
     });
 
+    it('Simple generator returning data with wait', function (done) {
+        testFn("function* run(message) { console.log('Hello generator!'); yield wait(500); return 'Resolved!'; }"
+            , function (executor) {
+                expect(executor.data.length).toEqual(1);
+                done();
+            });
+    });
+
+    it('Simple generator returning data from URL', function (done) {
+        testFn("function* run(message) { console.log('Hello async request!'); var result = yield request.get('http://www.google.com'); return result.statusCode; }"
+            , function (executor) {
+                expect(executor.data.length).toEqual(1);
+                expect(executor.data[0].body).toEqual(200);
+                done();
+            });
+    });
+
+    it('Simple generator emitting data', function (done) {
+        testFn("function* run(message) { console.log('Hello async request!'); for(var i=0;i<10;i++) { yield i; } }"
+            , function (executor) {
+                expect(executor.data.length).toEqual(1);
+                done();
+            });
+    });
+
+
 });

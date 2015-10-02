@@ -1,9 +1,20 @@
 "use strict";
-var vm = require('vm');
-var Q = require('q');
-var elasticio = require('elasticio-node');
-var debug = require('debug')('code');
-var co = require('co');
+let vm = require('vm');
+let Q = require('q');
+let elasticio = require('elasticio-node');
+let debug = require('debug')('code');
+let co = require('co');
+let request = require("co-request");
+
+function wait(timeout) {
+    return new Promise(function(ok) {
+        setTimeout(function() {
+            console.log('Done wait');
+            ok();
+        }, timeout);
+        console.log('Start wait sec=%s', timeout);
+    });
+}
 
 exports.process = function (msg, conf) {
     var ctx = vm.createContext({
@@ -15,7 +26,9 @@ exports.process = function (msg, conf) {
         setInterval: setInterval,
         clearInterval: clearInterval,
         exports: {},
-        messages: elasticio.messages
+        messages: elasticio.messages,
+        request : request,
+        wait : wait
     });
     var that = this;
     debug('Running the code %s', conf.code);
@@ -40,7 +53,7 @@ exports.process = function (msg, conf) {
                 }
                 that.emit('end');
             }).catch(function (err) {
-                debug('Promise failed');
+                debug('Promise failed', err);
                 that.emit('error', err);
                 that.emit('end');
             });
