@@ -24,8 +24,13 @@ exports.process = function (msg, conf) {
     });
     debug("No result, let's check the run object if it was created?");
     if (ctx.run && typeof ctx.run.apply == 'function') {
-        debug("Run variable is a function, calling it");
-        var result = ctx.run.apply(this, [msg]);
+        if (ctx.run.constructor.name === 'GeneratorFunction') {
+            debug('Run variable is a generator');
+            result = co(ctx.run);
+        } else {
+            debug("Run variable is a function, calling it");
+            var result = ctx.run.apply(this, [msg]);
+        }
         if (typeof result === 'object' && typeof result.then === 'function') {
             debug('Returned value is a promise, will evaluate it');
             result.then(function (resolved) {

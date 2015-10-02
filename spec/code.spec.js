@@ -1,5 +1,8 @@
+"use strict";
+
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
+var co = require('co');
 
 function TaskExec() {
     EventEmitter.call(this);
@@ -22,6 +25,17 @@ function testFn(code, cb) {
         code: code
     }]);
 }
+
+describe('ES6 code tests', function() {
+    it('Generator function recognition', function() {
+        var generator = function* () {};
+        expect(typeof generator).toEqual('function');
+        expect(typeof generator.apply).toEqual('function');
+        var result = generator();
+        expect(typeof result.next).toEqual('function');
+        expect(generator.constructor.name).toEqual('GeneratorFunction');
+    });
+});
 
 describe('ES5 code block', function() {
     "use strict";
@@ -78,4 +92,14 @@ describe('ES6 Code Block', function () {
             done();
         });
     });
+
+    it('Simple generator', function (done) {
+        "use strict";
+        testFn("function* run(message) { console.log('Hello generator!'); }"
+            , function (executor) {
+                expect(executor.data.length).toEqual(1);
+                done();
+            });
+    });
+
 });
