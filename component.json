@@ -7,6 +7,12 @@
             "label":"Code",
             "required":true,
             "default" : "// Please note only synchronious code is supported here\nconsole.log('Hello code!');\nemitter.emit('data', messages.newMessageWithBody({message: 'hello world'}));\n// No need to emit end"
+        },
+        "outputSample":{
+            "viewClass":"OutMetadataView",
+            "label":"Output JSON Sample",
+            "required":true,
+            "placeholder" : "{ \"message\" : \"hello world\" }"
         }
     },
     "actions":{
