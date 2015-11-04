@@ -1,18 +1,27 @@
 {
-    "title":"Code",
+    "title":"Node.js Code",
     "description" : "You can write your own code and deploy it as part of integration process.",
     "fields":{
         "code":{
             "viewClass":"CodeFieldView",
             "label":"Code",
             "required":true,
-            "default" : "self.emit(messages.newMessageWithBody({message: 'hello world'}});\nself.emit('end');"
+            "default" : "// Please note only Node.js code is supported here\nconsole.log('Hello code!');\n\n// Create message to be emitted\nvar data = messages.newMessageWithBody({message: 'hello world'});\n\n// Emit the data event\nemitter.emit('data', data);\n\n// No need to emit end\nconsole.log('Finished execution');"
+        },
+        "outputSample":{
+            "viewClass":"OutMetadataView",
+            "label":"Output JSON Sample",
+            "required":true,
+            "placeholder" : "{ \"message\" : \"hello world\" }"
         }
     },
     "actions":{
         "execute":{
             "main":"./actions/code.js",
-            "title":"Executes custom code"
+            "title":"Executes custom code",
+            "metadata" : {
+                "out" : {}
+            }
         }
     }
 }

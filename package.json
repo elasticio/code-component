@@ -1,19 +1,29 @@
 {
-  "name": "hello-world",
-  "version": "0.0.3",
-  "description": "elastic.io hello world component",
+  "name": "eio-code-component",
+  "version": "0.0.4",
+  "description": "elastic.io code component",
   "scripts": {
-    "test": "exit 0"
+    "test": "./node_modules/.bin/grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:elasticio/hello-world-nodejs.git"
+    "url": "git@github.com:elasticio/code-component.git"
   },
   "author": "elastic.io GmbH",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "co": "^4.6.0",
+    "co-request": "^1.0.0",
+    "debug": "^2.2.0",
     "elasticio-node": "0.0.5",
     "elasticio-sailor-nodejs": "^1.0.0",
     "q": "^1.4.1"
+  },
+  "engine": "node >=4.1.0",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-jasmine-node": "^0.3.1",
+    "grunt-jscs": "^2.1.0"
   }
 }
