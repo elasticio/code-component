@@ -1,5 +1,5 @@
 {
-    "title":"ES6 Code",
+    "title":"Node.js Code",
     "description" : "You can write your own code and deploy it as part of integration process.",
     "fields":{
         "code":{
