@@ -1,4 +1,4 @@
-ine:
+machine:
   services:
     - docker
 
