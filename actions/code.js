@@ -17,6 +17,7 @@ function wait(timeout) {
 }
 
 exports.process = function (msg, conf) {
+    var that = this;
     var ctx = vm.createContext({
         console: console,
         process: process,
@@ -28,9 +29,9 @@ exports.process = function (msg, conf) {
         exports: {},
         messages: elasticio.messages,
         request : request,
-        wait : wait
+        wait : wait,
+        emitter: that
     });
-    var that = this;
     debug('Running the code %s', conf.code);
     vm.runInContext(conf.code, ctx, {
         displayErrors: true

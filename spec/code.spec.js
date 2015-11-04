@@ -68,6 +68,16 @@ describe('ES5 code block', function () {
                 done();
             });
     });
+    
+    it('simple script emitting data', function (done) {
+        testFn("emitter.emit('data', messages.newMessageWithBody({message: 'hello world'}));" +
+            "emitter.emit('end'); ",
+            function (executor) {
+                "use strict";
+                expect(executor.data.length).toEqual(1);
+                done();
+            });
+    });
 
 });
 
