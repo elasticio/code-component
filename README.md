@@ -1,4 +1,4 @@
-# Hello Code!
+# Hello Node.js Code!
 A code component for the elastic.io platform, runs a piece of synchronious JavaScript inside your integration flow.
 
-![image](https://cloud.githubusercontent.com/assets/56208/10139824/0f50a12a-6605-11e5-8f8f-25aea2e92c46.png)
+![image](https://cloud.githubusercontent.com/assets/464220/10952574/c51fea46-8343-11e5-8b37-1c30a67dcbd6.png)
