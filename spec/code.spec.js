@@ -131,13 +131,5 @@ describe('ES6 Code Block with generator', function () {
             });
     });
 
-    it('Simple generator emitting data', function (done) {
-        testFn("function* run(message) { console.log('Hello async request!'); for(var i=0;i<10;i++) { yield i; } }"
-            , function (executor) {
-                expect(executor.data.length).toEqual(1);
-                done();
-            });
-    });
-
 
 });
