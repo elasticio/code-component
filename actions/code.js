@@ -26,6 +26,7 @@ exports.process = function (msg, conf) {
         clearTimeout: clearTimeout,
         setInterval: setInterval,
         clearInterval: clearInterval,
+        msg : msg,
         exports: {},
         messages: elasticio.messages,
         request : request,
