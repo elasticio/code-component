@@ -1,10 +1,11 @@
-"use strict";
-let vm = require('vm');
-let Q = require('q');
-let elasticio = require('elasticio-node');
-let debug = require('debug')('code');
-let co = require('co');
-let request = require("co-request");
+'use strict';
+const vm = require('vm');
+const Q = require('q');
+const elasticio = require('elasticio-node');
+const debug = require('debug')('code');
+const co = require('co');
+const request = require('co-request');
+const _ = require('lodash');
 
 function wait(timeout) {
     return new Promise(function(ok) {
@@ -19,6 +20,7 @@ function wait(timeout) {
 exports.process = function (msg, conf) {
     var that = this;
     var ctx = vm.createContext({
+        _: _,
         console: console,
         process: process,
         require: require,
