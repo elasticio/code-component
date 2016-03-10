@@ -23,9 +23,9 @@ After registration and uploading of your SSH Key you can proceed to deploy it in
 * [Create a repository](http://docs.elastic.io/docs/component-repositories) where your new component is going to *reside* inside the team that you have just created. For a simplicity you can name your repository **code-component** or **code*.
 
 ```bash
-$ git clone https://github.com/elasticio/code-component.git billomat-component
+$ git clone https://github.com/elasticio/code-component.git code-component
 
-$ cd billomat-component
+$ cd code-component
 ```
 Now you can edit your version of **code-component** component and change according to your needs - that is if you know what you are doing. Or you can just ``PUSH``it into our system to see the process in action:
 
