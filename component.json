@@ -28,6 +28,7 @@
         "executeTrigger": {
             "main": "./actions/code.js",
             "title": "Executes custom code",
+            "type": "polling",
             "metadata" : {
                 "out" : {}
             }
