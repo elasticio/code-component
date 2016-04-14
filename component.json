@@ -7,12 +7,6 @@
             "label": "Code",
             "required": true,
             "default": "// Please note only Node.js code is supported here\nconsole.log('Hello code, incoming message is msg=%j', msg);\n\n// Create message to be emitted\nvar data = messages.newMessageWithBody({message: 'hello world'});\n\n// Emit the data event\nemitter.emit('data', data);\n\n// No need to emit end\nconsole.log('Finished execution');"
-        },
-        "outputSample": {
-            "viewClass": "OutMetadataView",
-            "label": "Output JSON Sample",
-            "required": true,
-            "placeholder": "{ \"message\": \"hello world\" }"
         }
     },
     "actions": {
