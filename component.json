@@ -1,6 +1,7 @@
 {
     "title": "Node.js Code",
     "description": "You can write your own code and deploy it as part of integration process.",
+    "docsUrl": "https://github.com/elasticio/code-component",
     "fields": {
         "code": {
             "viewClass": "CodeFieldView",
