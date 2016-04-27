@@ -40,4 +40,6 @@ $ git push elasticio master
 ```
 Obviously the naming of your team and repository is entirely up-to you and if you do not put any corresponding naming our system will auto generate it for you but the naming might not entirely correspond to your project requirements.
 
-![image](https://cloud.githubusercontent.com/assets/464220/10952661/3548b410-8344-11e5-811c-06702ea49cfd.png)
+![image](https://cloud.githubusercontent.com/assets/56208/14851075/c4cf0702-0c7d-11e6-818a-035b8ad6f25c.png)
+
+More documentation and samples on how to use it you can find [here](http://docs.elastic.io/docs/code#section-how-to-use-it-).
