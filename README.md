@@ -6,6 +6,10 @@ This is an open source component to run a code inside your integration flow and 
 
 > **PLEASE NOTE:** This purpose of this component to test pieces of JavaScript code within your integration process. This component can help the development of your own component, however, it may not be suitable for every use case. **It is not a replacement for a real component, rather than a tool to test the functionalities before adding them into your component.**
 
+## Documentation
+
+Documentation on how to use this component you can find in [elastic.io docuemntation](http://docs.elastic.io/docs/code#section-how-to-use-it-).
+
 ## Before you Begin
 
 Before you can deploy any code into our system **you must be a registered elastic.io platform user**. Please see our home page at [http://www.elastic.io](http://www.elastic.io) to learn how.
