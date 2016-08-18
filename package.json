@@ -2,6 +2,9 @@
   "name": "eio-code-component",
   "version": "0.0.4",
   "description": "elastic.io code component",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "test": "./node_modules/.bin/grunt test"
   },
@@ -19,7 +22,6 @@
     "elasticio-sailor-nodejs": "1.1.0",
     "q": "^1.4.1"
   },
-  "engine": "node >=4.1.0",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
