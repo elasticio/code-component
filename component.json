@@ -1,7 +1,7 @@
 {
     "title": "Node.js Code",
     "description": "You can write your own code and deploy it as part of integration process.",
-    "docsUrl": "http://docs.elastic.io/docs/code",
+    "docsUrl": "http://go2.elastic.io/code-component",
     "fields": {
         "code": {
             "viewClass": "CodeFieldView",
