@@ -8,11 +8,11 @@ This is an open source component to run a code inside your integration flow and 
 
 ## Documentation
 
-Documentation on how to use this component you can find in [elastic.io docuemntation](http://docs.elastic.io/docs/code#section-how-to-use-it-).
+Documentation on how to use this component you can find in [elastic.io docuemntation](http://go2.elastic.io/code-component).
 
 ## Before you Begin
 
-Before you can deploy any code into our system **you must be a registered elastic.io platform user**. Please see our home page at [http://www.elastic.io](http://www.elastic.io) to learn how.
+Before you can deploy any code into our system **you must be a registered elastic.io platform user**. Please see our home page at [https://www.elastic.io](https://www.elastic.io) to learn how.
 
 > Any attempt to deploy a code into our platform without a registration would fail.
 
@@ -42,4 +42,4 @@ Obviously the naming of your team and repository is entirely up-to you and if yo
 
 ![image](https://cloud.githubusercontent.com/assets/56208/14851075/c4cf0702-0c7d-11e6-818a-035b8ad6f25c.png)
 
-More documentation and samples on how to use it you can find [here](http://docs.elastic.io/docs/code#section-how-to-use-it-).
+More documentation and samples on how to use it you can find [here](http://go2.elastic.io/code-component).
