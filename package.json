@@ -18,8 +18,8 @@
     "co": "^4.6.0",
     "co-request": "^1.0.0",
     "debug": "^2.2.0",
-    "elasticio-node": "0.0.5",
-    "elasticio-sailor-nodejs": "2.1.0-dev.2",
+    "elasticio-node": "0.0.8",
+    "elasticio-sailor-nodejs": "2.1.0",
     "q": "^1.4.1"
   },
   "devDependencies": {
