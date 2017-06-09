@@ -43,3 +43,4 @@ Obviously the naming of your team and repository is entirely up-to you and if yo
 ![image](https://cloud.githubusercontent.com/assets/56208/14851075/c4cf0702-0c7d-11e6-818a-035b8ad6f25c.png)
 
 More documentation and samples on how to use it you can find [here](http://go2.elastic.io/code-component).
+
