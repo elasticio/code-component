@@ -17,7 +17,7 @@ function wait(timeout) {
     });
 }
 
-exports.process = function (msg, conf) {
+exports.process = async function (msg, conf) {
     var that = this;
     var ctx = vm.createContext({
         _: _,
@@ -55,10 +55,10 @@ exports.process = function (msg, conf) {
                 if (resolved) {
                     that.emit('data', elasticio.messages.newMessageWithBody(resolved));
                 }
-                that.emit('end');
-            }).catch(function (err) {
+                return that.emit('end');
+            }).catch(async function (err) {
                 debug('Promise failed', err);
-                that.emit('error', err);
+                await that.emit('error', err);
                 that.emit('end');
             });
         }
