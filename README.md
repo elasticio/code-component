@@ -45,10 +45,15 @@ Use code is very simple, just do following:
 async function run(msg) {
   console.log('Incoming message is %s', JSON.stringify(msg));
   const body = { result : 'Hello world!' };
+  // You can emit as many data messages as required
   await this.emit('data', { body });
   console.log('Execution finished');
 }
 ```
+
+Please note if you have a simple one-in-one-out function you can simply return a JSON object as a result
+of your function, it will be automatically emitted as data.
+
 ## Common usage scenarios
 
 ### Calling an external REST API
