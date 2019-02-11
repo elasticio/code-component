@@ -17,3 +17,33 @@ However, don't let the simple look fool you - it has a full-fledged interface wi
  * Support for number of variables and libraries within the context of the execution
  * Support latest ECMAScript standard
  * Run and troubleshoot within the designer interface.
+
+## Available Variables and Libraries
+Here are the available variables and libraries that can be used within the context of execution. The most up-to-date list
+can always be found in be used within the context of execution. The most up-to-date list can always be found in code.js
+of the component. Below is a sample for the reference:
+
+`console`: - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html),
+`process`: - Current Node.js process,
+`require`: - Module require,
+`setTimeout`: - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
+`clearTimeout`: - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
+`setInterval`: - more on setInterval,
+`clearInterval`: - more on clearInterval,
+`msg`: - Incoming message containing the payload from the previous step,
+`exports`: {},
+`messages`: - Utility for convenient message creation,
+`request`: - Http Client,
+`wait`: - wait,
+`emitter`: user to emit messages and errors
+
+## Code component usage Examples
+
+Use code is very simple, just do following:
+```JavaScript
+async function run(msg) {
+  console.log('Incoming message is %s', JSON.stringify(msg));
+  const body = { result : 'Hello world!' };
+  await this.emit('data', { body });
+}
+```
