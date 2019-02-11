@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "elastic.io code component",
   "engines": {
-    "node": "7.10.0"
+    "node": "^10"
   },
   "scripts": {
     "test": "./node_modules/.bin/grunt test"
