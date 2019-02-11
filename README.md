@@ -56,6 +56,20 @@ of your function, it will be automatically emitted as data.
 
 ## Common usage scenarios
 
+### Doing complex data transformation
+
+[JSONata](http://jsonata.org/) is great however sometimes it's easier to do things in JavaScript, if you want to transorm
+an incoming message with code, just use following sample:
+
+```JavaScript
+async function run(msg) {
+  return {
+    addition : "You can use code",
+    keys : Object.keys(msg)   
+  }
+}
+```
+
 ### Calling an external REST API
 
 It's very simple to code a small REST API call out of the Code component, see following example:
