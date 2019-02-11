@@ -57,7 +57,7 @@ It's very simple to code a small REST API call out of the Code component, see fo
 
 ```JavaScript
 async function run(msg) {
-  const currentUser = request.get({
+  const res = await request.get({
     uri: 'https://api.elastic.io/v1/users',
     auth: {
       user: process.env.ELASTICIO_API_USERNAME,
