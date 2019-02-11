@@ -45,5 +45,6 @@ async function run(msg) {
   console.log('Incoming message is %s', JSON.stringify(msg));
   const body = { result : 'Hello world!' };
   await this.emit('data', { body });
+  console.log('Execution finished');
 }
 ```
