@@ -40,11 +40,35 @@ of the component. Below is a sample for the reference:
 ## Code component usage Examples
 
 Use code is very simple, just do following:
+
 ```JavaScript
 async function run(msg) {
   console.log('Incoming message is %s', JSON.stringify(msg));
   const body = { result : 'Hello world!' };
   await this.emit('data', { body });
   console.log('Execution finished');
+}
+```
+## Common usage scenarios
+
+### Calling an external REST API
+
+It's very simple to code a small REST API call out of the Code component, see following example:
+
+```JavaScript
+async function run(msg) {
+  const currentUser = request.get({
+    uri: 'https://api.elastic.io/v1/users',
+    auth: {
+      user: process.env.ELASTICIO_API_USERNAME,
+      pass: process.env.ELASTICIO_API_KEY
+    },
+    json: true  
+  });
+  return {
+    fullName: res.body.first_name + " " + res.body.last_name,
+    email: res.body.email,
+    userID: res.body.id    
+  }
 }
 ```
