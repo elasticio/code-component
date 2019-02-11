@@ -62,11 +62,9 @@ of your function, it will be automatically emitted as data.
 an incoming message with code, just use following sample:
 
 ```JavaScript
-async function run(msg) {
-  return {
-    addition : "You can use code",
-    keys : Object.keys(msg)   
-  }
+async function run(msg) => {
+  addition : "You can use code",
+  keys : Object.keys(msg)   
 }
 ```
 
