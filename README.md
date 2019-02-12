@@ -33,7 +33,7 @@ of the component. Below is a sample for the reference:
 `msg`: - Incoming message containing the payload from the previous step,
 `exports`: {},
 `messages`: - Utility for convenient message creation,
-`request`: - Http Client,
+`request`: - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request)),
 `wait`: - wait,
 `emitter`: user to emit messages and errors
 
@@ -89,3 +89,8 @@ async function run(msg) {
   }
 }
 ```
+
+## Known issues and limitations
+
+ - Snapshots are not supported
+ - Credentials are not supported
