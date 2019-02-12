@@ -23,19 +23,19 @@ Here are the available variables and libraries that can be used within the conte
 can always be found in be used within the context of execution. The most up-to-date list can always be found in code.js
 of the component. Below is a sample for the reference:
 
-`console`: - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html),
-`process`: - Current Node.js process,
-`require`: - Module require,
-`setTimeout`: - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
-`clearTimeout`: - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
-`setInterval`: - more on setInterval,
-`clearInterval`: - more on clearInterval,
-`msg`: - Incoming message containing the payload from the previous step,
-`exports`: {},
-`messages`: - Utility for convenient message creation,
-`request`: - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request)),
-`wait`: - wait,
-`emitter`: user to emit messages and errors
+ - `console`: - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html),
+ - `process`: - Current Node.js process,
+ - `require`: - Module require,
+ - `setTimeout`: - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
+ - `clearTimeout`: - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
+ - `setInterval`: - more on setInterval,
+ - `clearInterval`: - more on clearInterval,
+ - `msg`: - Incoming message containing the payload from the previous step,
+ - `exports`: {},
+ - `messages`: - Utility for convenient message creation,
+ - `request`: - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request)),
+ - `wait`: - wait,
+ - `emitter`: user to emit messages and errors
 
 ## Code component usage Examples
 
