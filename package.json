@@ -19,7 +19,7 @@
     "co-request": "^1.0.0",
     "debug": "^2.2.0",
     "elasticio-node": "0.0.8",
-    "elasticio-sailor-nodejs": "2.1.0",
+    "elasticio-sailor-nodejs": "git://github.com/elasticio/sailor-nodejs.git#409acb075acfd4e4ee95550d5311e435f02f9bf2",
     "q": "^1.4.1"
   },
   "devDependencies": {
