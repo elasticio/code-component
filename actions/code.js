@@ -17,7 +17,7 @@ function wait(timeout) {
     });
 }
 
-exports.process = function (msg, conf) {
+exports.process = function (msg, conf, snp) {
     var that = this;
     var ctx = vm.createContext({
         _: _,
@@ -29,6 +29,7 @@ exports.process = function (msg, conf) {
         setInterval: setInterval,
         clearInterval: clearInterval,
         msg : msg,
+	snapshot: snp,
         exports: {},
         messages: elasticio.messages,
         request : request,
