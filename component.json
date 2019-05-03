@@ -7,7 +7,7 @@
             "viewClass": "CodeFieldView",
             "label": "Code",
             "required": true,
-            "default": "// Please note only Node.js code is supported here\nconsole.log('Hello code, incoming message is msg=%j', msg);\n\n// Create message to be emitted\nvar data = messages.newMessageWithBody({message: 'hello world'});\n\n// Emit the data event\nemitter.emit('data', data);\n\n// No need to emit end\nconsole.log('Finished execution');"
+            "default": "// Please note only Node.js code is supported here\nasync function run(msg) {\n\tconsole.log('Incoming message is %s', JSON.stringify(msg));\n\tconst body = { result : 'Hello world!' };\n\t// You can emit as many data messages as required\n\tawait this.emit('data', { body });\n\tconsole.log('Execution finished');\n}"
         }
     },
     "actions": {
