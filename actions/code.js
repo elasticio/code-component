@@ -17,7 +17,7 @@ function wait(timeout) {
     });
 }
 
-exports.process = function (msg, conf, snp) {
+exports.process = async function (msg, conf, snp) {
     var that = this;
     var ctx = vm.createContext({
         _: _,
