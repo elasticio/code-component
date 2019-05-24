@@ -6,6 +6,8 @@
     "node": "^10"
   },
   "scripts": {
+    "docker:build": "docker build -t elasticio/code-component:$(git log -n1 --format=%H) .",
+    "docker:push": "docker push elasticio/code-component:$(git log -n1 --format=%H)",
     "test": "./node_modules/.bin/grunt test"
   },
   "repository": {
