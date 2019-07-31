@@ -2,11 +2,12 @@
 
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
-var co = require('co');
 
 function TaskExec() {
     EventEmitter.call(this);
-    this.errorCount = 0;
+    this.logger = {
+        info: () => {}
+    };
 }
 util.inherits(TaskExec, EventEmitter);
 var fn = require('../actions/code');

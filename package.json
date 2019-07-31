@@ -21,8 +21,7 @@
     "co-request": "^1.0.0",
     "debug": "^2.2.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.2.3",
-    "q": "^1.4.1"
+    "elasticio-sailor-nodejs": "2.4.2"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
