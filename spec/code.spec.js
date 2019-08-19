@@ -1,146 +1,112 @@
-"use strict";
+const chai = require('chai');
+const sinon = require('sinon');
+const logger = require('@elastic.io/component-logger')();
+const action = require('../actions/code');
 
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+const { expect } = chai;
 
-function TaskExec() {
-    EventEmitter.call(this);
-    this.logger = {
-        info: () => {}
+let emitter;
+let self;
+let code;
+
+describe('code test', () => {
+  beforeEach(() => {
+    sinon.restore();
+    emitter = {
+      emit: sinon.spy(),
     };
-}
-util.inherits(TaskExec, EventEmitter);
-var fn = require('../actions/code');
-function testFn(code, cb) {
-    var executor = new TaskExec();
-    executor.data = [];
-    executor.on('end', function () {
-        "use strict";
-        cb(executor);
+    self = { logger, emit: emitter.emit };
+  });
+  describe('when code is async function', () => {
+    it('should succeed', async () => {
+      code = 'async function run(msg) {\n'
+                    + '\tthis.logger.info(\'Incoming message is %s\', JSON.stringify(msg));\n'
+                    + '\tconst body = { name : \'Name\' };\n'
+                    + '\tawait new Promise(resolve => setTimeout(resolve, 1000))\n'
+                    + '\tawait this.emit(\'data\', { body });\n'
+                    + '\tthis.logger.info(\'Execution finished\');\n'
+                    + '}';
+      await action.process.call(self, {}, { code });
+      const result = emitter.emit.getCall(0).args[1];
+      expect(result.body.name).equal('Name');
     });
-    executor.on('data', function (value) {
-        "use strict";
-        this.data.push(value);
-    });
-    fn.process.apply(executor, [{}, {
-        code: code
-    }]);
-}
+  });
 
-describe('ES6 code tests', function () {
-    it('Generator function recognition', function () {
-        var generator = function* () {
-        };
-        expect(typeof generator).toEqual('function');
-        expect(typeof generator.apply).toEqual('function');
-        var result = generator();
-        expect(typeof result.next).toEqual('function');
-        expect(generator.constructor.name).toEqual('GeneratorFunction');
-    });
-});
-
-describe('ES5 code block', function () {
-    "use strict";
-
-
-    it('Processes hello code normally', function (done) {
-        testFn("console.log('Hello code!');", function () {
-            "use strict";
-            done();
-        });
+  describe('ES5 code block', () => {
+    it('Processes hello code normally', async () => {
+      code = "console.log('Hello code!');";
+      await action.process.call(self, {}, { code });
+      expect(emitter.emit.calledOnce).equal(true);
+      expect(emitter.emit.calledWith('end')).equal(true);
     });
 
-    it('Processes hello code with run function', function (done) {
-        testFn("function run(msg) { console.log('Hello code!'); this.emit('end');}", function () {
-            "use strict";
-            done();
-        });
+    it('Processes hello code with run function', async () => {
+      code = "function run(msg) { console.log('Hello code!'); this.emit('end');}";
+      await action.process.call(self, {}, { code });
+      expect(emitter.emit.calledOnce).equal(true);
+      expect(emitter.emit.calledWith('end')).equal(true);
     });
 
 
-    it('Processes hello code emitting', function (done) {
-        testFn("function run(message) {" +
-            "this.emit('data', messages.newMessageWithBody({message: 'hello world'}));" +
-            "this.emit('end'); " +
-            "}",
-            function (executor) {
-                "use strict";
-                expect(executor.data.length).toEqual(1);
-                done();
-            });
-    });
-    
-    it('simple script emitting data', function (done) {
-        testFn("emitter.emit('data', messages.newMessageWithBody({message: 'hello world'}));" +
-            "emitter.emit('end'); ",
-            function (executor) {
-                "use strict";
-                expect(executor.data.length).toEqual(1);
-                done();
-            });
+    it('Processes hello code emitting', async () => {
+      code = 'function run(message) {'
+          + "this.emit('data', messages.newMessageWithBody({message: 'hello world'}));"
+          + '}';
+      await action.process.call(self, {}, { code });
+      const result = emitter.emit.getCall(0).args[1];
+      expect(result.body.message).equal('hello world');
     });
 
-});
+    it('simple script emitting data', async () => {
+      code = "emitter.emit('data', messages.newMessageWithBody({message: 'hello world'}));"
+          + "emitter.emit('end'); ";
+      await action.process.call(self, {}, { code });
+      const result = emitter.emit.getCall(0).args[1];
+      expect(result.body.message).equal('hello world');
+    });
+  });
 
-describe('ES6 Code Block with promises', function () {
-
-    it('Promise that resolves', function (done) {
-        "use strict";
-        testFn("function run(message) {" +
-            "return new Promise(function(resolve, reject) {" +
-            "resolve(true);" +
-            "})" +
-            "};", function (executor) {
-            expect(executor.data.length).toEqual(1);
-            done();
-        });
+  describe('ES6 Code Block with promises', () => {
+    it('Promise that resolves', async () => {
+      code = 'function run(message) {'
+          + 'return new Promise(function(resolve, reject) {'
+          + 'resolve(true);'
+          + '})'
+          + '};';
+      const result = await action.process.call(self, {}, { code });
+      expect(result.body.result).equal(true);
     });
 
-    it('Promise that resolves 2', function (done) {
-        "use strict";
-        testFn("function run(message) { console.log('Hello promise!'); return new Promise(function(accept, reject) { accept('Hello code!'); }); }"
-            , function (executor) {
-                expect(executor.data.length).toEqual(1);
-                done();
-            });
+    it('Promise that resolves 2', async () => {
+      code = "function run(message) { console.log('Hello promise!'); return new Promise(function(accept, reject) { accept('Hello code!'); }); }";
+      const result = await action.process.call(self, {}, { code });
+      expect(result.body.result).equal('Hello code!');
+    });
+  });
+
+  describe('ES6 Code Block with generator', () => {
+    it('Simple generator', async () => {
+      code = "function* run(message) { console.log('Hello generator!'); }";
+      await action.process.call(self, {}, { code });
+      expect(emitter.emit.called).equal(false);
     });
 
-});
-
-describe('ES6 Code Block with generator', function () {
-
-    it('Simple generator', function (done) {
-        testFn("function* run(message) { console.log('Hello generator!'); }"
-            , function (executor) {
-                expect(executor.data.length).toEqual(0);
-                done();
-            });
+    it('Simple generator returning data', async () => {
+      code = "function* run(message) { console.log('Hello generator!'); return 'Resolved!'; }";
+      const result = await action.process.call(self, {}, { code });
+      expect(result.body.result).equal('Resolved!');
     });
 
-    it('Simple generator returning data', function (done) {
-        testFn("function* run(message) { console.log('Hello generator!'); return 'Resolved!'; }"
-            , function (executor) {
-                expect(executor.data.length).toEqual(1);
-                done();
-            });
+    it('Simple generator returning data with wait', async () => {
+      code = "function* run(message) { console.log('Hello generator!'); yield wait(500); return 'Resolved!'; }";
+      const result = await action.process.call(self, {}, { code });
+      expect(result.body.result).equal('Resolved!');
     });
 
-    it('Simple generator returning data with wait', function (done) {
-        testFn("function* run(message) { console.log('Hello generator!'); yield wait(500); return 'Resolved!'; }"
-            , function (executor) {
-                expect(executor.data.length).toEqual(1);
-                done();
-            });
+    it('Simple generator returning data from URL', async () => {
+      code = "function* run(message) { console.log('Hello async request!'); var result = yield request.get('http://www.google.com'); return result.statusCode; }";
+      const result = await action.process.call(self, {}, { code });
+      expect(result.body.result).equal(200);
     });
-
-    it('Simple generator returning data from URL', function (done) {
-        testFn("function* run(message) { console.log('Hello async request!'); var result = yield request.get('http://www.google.com'); return result.statusCode; }"
-            , function (executor) {
-                expect(executor.data.length).toEqual(1);
-                expect(executor.data[0].body).toEqual(200);
-                done();
-            });
-    });
-
-
+  });
 });
