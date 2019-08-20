@@ -1,6 +1,6 @@
 {
   "name": "eio-code-component",
-  "version": "0.0.4",
+  "version": "1.0.1",
   "description": "elastic.io code component",
   "engines": {
     "node": "^10"

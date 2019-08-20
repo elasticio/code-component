@@ -49,8 +49,17 @@ exports.process = async function (msg, conf) {
     }
     if (typeof result === 'object' && typeof result.then === 'function') {
       this.logger.info('Returned value is a promise, will evaluate it');
-      // eslint-disable-next-line no-return-await
-      return messages.newMessageWithBody({ result: await result });
+      let returnResult;
+      try {
+        returnResult = await result;
+        this.logger.info('Promise resolved');
+        if (returnResult) {
+          return messages.newMessageWithBody(returnResult);
+        }
+      } catch (e) {
+        this.logger.error('Promise failed', e);
+        throw e;
+      }
     }
   } else {
     this.logger.info("Run function was not found, it's over now");

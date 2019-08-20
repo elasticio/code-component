@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const chai = require('chai');
 const sinon = require('sinon');
 const logger = require('@elastic.io/component-logger')();
@@ -74,13 +75,13 @@ describe('code test', () => {
           + '})'
           + '};';
       const result = await action.process.call(self, {}, { code });
-      expect(result.body.result).equal(true);
+      expect(result.body).equal(true);
     });
 
     it('Promise that resolves 2', async () => {
       code = "function run(message) { console.log('Hello promise!'); return new Promise(function(accept, reject) { accept('Hello code!'); }); }";
       const result = await action.process.call(self, {}, { code });
-      expect(result.body.result).equal('Hello code!');
+      expect(result.body).equal('Hello code!');
     });
   });
 
@@ -94,19 +95,19 @@ describe('code test', () => {
     it('Simple generator returning data', async () => {
       code = "function* run(message) { console.log('Hello generator!'); return 'Resolved!'; }";
       const result = await action.process.call(self, {}, { code });
-      expect(result.body.result).equal('Resolved!');
+      expect(result.body).equal('Resolved!');
     });
 
     it('Simple generator returning data with wait', async () => {
       code = "function* run(message) { console.log('Hello generator!'); yield wait(500); return 'Resolved!'; }";
       const result = await action.process.call(self, {}, { code });
-      expect(result.body.result).equal('Resolved!');
+      expect(result.body).equal('Resolved!');
     });
 
     it('Simple generator returning data from URL', async () => {
       code = "function* run(message) { console.log('Hello async request!'); var result = yield request.get('http://www.google.com'); return result.statusCode; }";
       const result = await action.process.call(self, {}, { code });
-      expect(result.body.result).equal(200);
+      expect(result.body).equal(200);
     });
   });
 });
