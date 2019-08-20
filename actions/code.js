@@ -56,6 +56,7 @@ exports.process = async function (msg, conf) {
         if (returnResult) {
           return messages.newMessageWithBody(returnResult);
         }
+        this.emit('end');
       } catch (e) {
         this.logger.error('Promise failed', e);
         throw e;

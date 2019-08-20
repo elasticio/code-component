@@ -89,7 +89,7 @@ describe('code test', () => {
     it('Simple generator', async () => {
       code = "function* run(message) { console.log('Hello generator!'); }";
       await action.process.call(self, {}, { code });
-      expect(emitter.emit.called).equal(false);
+      expect(emitter.emit.calledOnce).equal(true);
     });
 
     it('Simple generator returning data', async () => {
