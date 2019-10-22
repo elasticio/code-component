@@ -16,7 +16,7 @@ function wait(timeout) {
 }
 
 // eslint-disable-next-line consistent-return,func-names
-exports.process = async function (msg, conf) {
+exports.process = async function (msg, conf, snapshot) {
   const ctx = vm.createContext({
     _,
     console,
@@ -42,10 +42,11 @@ exports.process = async function (msg, conf) {
     let result;
     if (ctx.run.constructor.name === 'GeneratorFunction') {
       this.logger.info('Run variable is a generator');
-      result = co(ctx.run);
+      const fn = co.wrap(ctx.run);
+      result = fn.apply(this, [msg, conf, snapshot]);
     } else {
       this.logger.info('Run variable is a function, calling it');
-      result = ctx.run.apply(this, [msg]);
+      result = ctx.run.apply(this, [msg, conf, snapshot]);
     }
     if (typeof result === 'object' && typeof result.then === 'function') {
       this.logger.info('Returned value is a promise, will evaluate it');

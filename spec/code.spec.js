@@ -16,20 +16,65 @@ describe('code test', () => {
     emitter = {
       emit: sinon.spy(),
     };
-    self = { logger, emit: emitter.emit };
+    self = {
+      logger,
+      emit: emitter.emit,
+    };
   });
+
   describe('when code is async function', () => {
     it('should succeed', async () => {
-      code = 'async function run(msg) {\n'
+      code = 'async function run(msg, cfg, snapshot) {\n'
                     + '\tthis.logger.info(\'Incoming message is %s\', JSON.stringify(msg));\n'
-                    + '\tconst body = { name : \'Name\' };\n'
+                    + '\tconst body = { msg, cfg, snapshot };\n'
                     + '\tawait new Promise(resolve => setTimeout(resolve, 1000))\n'
                     + '\tawait this.emit(\'data\', { body });\n'
                     + '\tthis.logger.info(\'Execution finished\');\n'
                     + '}';
-      await action.process.call(self, {}, { code });
+      const msg = {
+        body: {
+          my: 'body',
+        },
+      };
+      const cfg = { code };
+      const snapshot = {
+        my: 'snapshot',
+      };
+      await action.process.call(self, msg, cfg, snapshot);
       const result = emitter.emit.getCall(0).args[1];
-      expect(result.body.name).equal('Name');
+      expect(result.body).deep.equal({
+        msg,
+        cfg,
+        snapshot,
+      });
+    });
+  });
+
+  describe('when code is a generator function', () => {
+    it('should succeed', async () => {
+      code = 'function* run(msg, cfg, snapshot) {\n'
+        + '\tthis.logger.info(\'Incoming message is %s\', JSON.stringify(msg));\n'
+        + '\tconst body = { msg, cfg, snapshot };\n'
+        + '\tnew Promise(resolve => setTimeout(resolve, 1000))\n'
+        + '\tthis.emit(\'data\', { body });\n'
+        + '\tthis.logger.info(\'Execution finished\');\n'
+        + '}';
+      const msg = {
+        body: {
+          my: 'body',
+        },
+      };
+      const cfg = { code };
+      const snapshot = {
+        my: 'snapshot',
+      };
+      await action.process.call(self, msg, cfg, snapshot);
+      const result = emitter.emit.getCall(0).args[1];
+      expect(result.body).deep.equal({
+        msg,
+        cfg,
+        snapshot,
+      });
     });
   });
 
