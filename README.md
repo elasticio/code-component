@@ -24,15 +24,17 @@ can always be found in be used within the context of execution. The most up-to-d
 of the component. Below is a sample for the reference:
 
  - `console`: - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html),
- - `process`: - Current Node.js process,
- - `require`: - Module require,
+ - `process`: - current Node.js process,
+ - `require`: - module require,
  - `setTimeout`: - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
  - `clearTimeout`: - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
  - `setInterval`: - more on setInterval,
  - `clearInterval`: - more on clearInterval,
- - `msg`: - Incoming message containing the payload from the previous step,
+ - `msg`: - incoming message containing the payload from the previous step,
+ - `cfg`: - step's configuration. At the moment contains only one property: `code` (the code, being executed),
+ - `snapshot` - step's snapshot, 
  - `exports`: {},
- - `messages`: - Utility for convenient message creation,
+ - `messages`: - utility for convenient message creation,
  - `request`: - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request)),
  - `wait`: - wait,
  - `emitter`: user to emit messages and errors
@@ -42,7 +44,7 @@ of the component. Below is a sample for the reference:
 Use code is very simple, just do following:
 
 ```JavaScript
-async function run(msg) {
+async function run(msg, cfg, snapshot) {
   console.log('Incoming message is %s', JSON.stringify(msg));
   const body = { result : 'Hello world!' };
   // You can emit as many data messages as required
@@ -62,9 +64,9 @@ of your function, it will be automatically emitted as data.
 an incoming message with code, just use following sample:
 
 ```JavaScript
-async function run(msg) => {
-  addition : "You can use code",
-  keys : Object.keys(msg)   
+async function run(msg, cfg, snapshot) => {
+  addition: "You can use code",
+  keys: Object.keys(msg)   
 }
 ```
 
@@ -73,7 +75,7 @@ async function run(msg) => {
 It's very simple to code a small REST API call out of the Code component, see following example:
 
 ```JavaScript
-async function run(msg) {
+async function run(msg, cfg, snapshot) {
   const res = await request.get({
     uri: 'https://api.elastic.io/v1/users',
     auth: {
@@ -92,5 +94,4 @@ async function run(msg) {
 
 ## Known issues and limitations
 
- - Snapshots are not supported
  - Credentials are not supported
