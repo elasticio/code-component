@@ -1,3 +1,7 @@
+## 1.0.1 (November 13, 2019)
+* Added snapshots support by passing 2 more arguments to `run` function: `cfg` and `snapshot`.
+* All log statements changed from `info` level to `debug`.
+
 ## 1.0.1 (August 28, 2019)
 
 Fixed bug:
@@ -5,5 +9,5 @@ Fixed bug:
 
 ## 1.0.0 (August 2, 2019)
 
-* Initial release which includes a bunch of previous unversioned releases
+* Initial release which includes a bunch of previous unversioned releases.
 

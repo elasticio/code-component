@@ -8,7 +8,8 @@ Pretty much the same way that you would use any other component in our system. I
 so no need to deploy it yourself (although you could if you have extended it yourself). In our Dashboard
 start building your integration and include the Code component as well. You will see a picture similar to the one below:
 
-![image](https://user-images.githubusercontent.com/56208/52571227-71cd9480-2e15-11e9-9c62-17e5085d7ada.png)
+![image](https://user-images.githubusercontent.com/2523461/68778086-f3678280-0632-11ea-9e9c-d2a888fd5788.png)
+
 
 However, don't let the simple look fool you - it has a full-fledged interface with many very useful features like the ones you would expect from your favourite desktop developing tool:
 
@@ -23,21 +24,21 @@ Here are the available variables and libraries that can be used within the conte
 can always be found in be used within the context of execution. The most up-to-date list can always be found in code.js
 of the component. Below is a sample for the reference:
 
- - `console`: - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html),
- - `process`: - current Node.js process,
- - `require`: - module require,
- - `setTimeout`: - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
- - `clearTimeout`: - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html),
- - `setInterval`: - more on setInterval,
- - `clearInterval`: - more on clearInterval,
- - `msg`: - incoming message containing the payload from the previous step,
- - `cfg`: - step's configuration. At the moment contains only one property: `code` (the code, being executed),
- - `snapshot` - step's snapshot, 
- - `exports`: {},
- - `messages`: - utility for convenient message creation,
- - `request`: - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request)),
- - `wait`: - wait,
- - `emitter`: user to emit messages and errors
+ - `console` - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html)
+ - `process` - current Node.js process
+ - `require` - module require
+ - `setTimeout` - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html)
+ - `clearTimeout` - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html)
+ - `setInterval` - more on setInterval
+ - `clearInterval` - more on clearInterval
+ - `msg` - incoming message containing the payload from the previous step
+ - `cfg` - step's configuration. At the moment contains only one property: `code` (the code, being executed)
+ - `snapshot` - step's snapshot
+ - `exports` - just a plain object `{}`
+ - `messages` - utility for convenient message creation
+ - `request` - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request))
+ - `wait` - wait
+ - `emitter` user to emit messages and errors
 
 ## Code component usage Examples
 
@@ -64,9 +65,11 @@ of your function, it will be automatically emitted as data.
 an incoming message with code, just use following sample:
 
 ```JavaScript
-async function run(msg, cfg, snapshot) => {
-  addition: "You can use code",
-  keys: Object.keys(msg)   
+async function run(msg, cfg, snapshot) {
+  return {
+      addition: 'You can use code',
+      keys: Object.keys(msg)    
+  };
 }
 ```
 
