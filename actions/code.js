@@ -8,15 +8,15 @@ const request = require('co-request');
 function wait(timeout) {
   return new Promise((ok) => {
     setTimeout(() => {
-      this.logger.info('Done wait');
+      this.logger.debug('Done wait');
       ok();
     }, timeout);
-    this.logger.info('Start wait sec=%s', timeout);
+    this.logger.debug('Start wait sec=%s', timeout);
   });
 }
 
 // eslint-disable-next-line consistent-return,func-names
-exports.process = async function (msg, conf) {
+exports.process = async function (msg, conf, snapshot) {
   const ctx = vm.createContext({
     _,
     console,
@@ -33,26 +33,27 @@ exports.process = async function (msg, conf) {
     wait: wait.bind(this),
     emitter: this,
   });
-  this.logger.info('Running the code %s', conf.code);
+  this.logger.debug('Running the code %s', conf.code);
   vm.runInContext(conf.code, ctx, {
     displayErrors: true,
   });
-  this.logger.info("No result, let's check the run object if it was created?");
+  this.logger.debug("No result, let's check the run object if it was created?");
   if (ctx.run && typeof ctx.run.apply === 'function') {
     let result;
     if (ctx.run.constructor.name === 'GeneratorFunction') {
-      this.logger.info('Run variable is a generator');
-      result = co(ctx.run);
+      this.logger.debug('Run variable is a generator');
+      const fn = co.wrap(ctx.run);
+      result = fn.apply(this, [msg, conf, snapshot]);
     } else {
-      this.logger.info('Run variable is a function, calling it');
-      result = ctx.run.apply(this, [msg]);
+      this.logger.debug('Run variable is a function, calling it');
+      result = ctx.run.apply(this, [msg, conf, snapshot]);
     }
     if (typeof result === 'object' && typeof result.then === 'function') {
-      this.logger.info('Returned value is a promise, will evaluate it');
+      this.logger.debug('Returned value is a promise, will evaluate it');
       let returnResult;
       try {
         returnResult = await result;
-        this.logger.info('Promise resolved');
+        this.logger.debug('Promise resolved');
         if (returnResult) {
           return messages.newMessageWithBody(returnResult);
         }
@@ -63,7 +64,7 @@ exports.process = async function (msg, conf) {
       }
     }
   } else {
-    this.logger.info("Run function was not found, it's over now");
+    this.logger.debug("Run function was not found, it's over now");
     this.emit('end');
   }
 };
