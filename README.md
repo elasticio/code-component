@@ -21,24 +21,19 @@ However, don't let the simple look fool you - it has a full-fledged interface wi
 
 ## Available Variables and Libraries
 Here are the available variables and libraries that can be used within the context of execution. The most up-to-date list
-can always be found in be used within the context of execution. The most up-to-date list can always be found in code.js
-of the component. Below is a sample for the reference:
+can always be found in be used within the context of execution or in `code.js` of the component. Below is a sample for the reference.
 
- - `console` - more on [Node.js console](https://nodejs.org/dist/latest-v5.x/docs/api/console.html)
- - `process` - current Node.js process
- - `require` - module require
- - `setTimeout` - more on [setTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html)
- - `clearTimeout` - more on [clearTimeout](https://nodejs.org/dist/latest-v5.x/docs/api/timers.html)
- - `setInterval` - more on setInterval
- - `clearInterval` - more on clearInterval
- - `msg` - incoming message containing the payload from the previous step
- - `cfg` - step's configuration. At the moment contains only one property: `code` (the code, being executed)
- - `snapshot` - step's snapshot
- - `exports` - just a plain object `{}`
- - `messages` - utility for convenient message creation
- - `request` - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request))
- - `wait` - wait
- - `emitter` user to emit messages and errors
+### Elastic.io Specific Functionality
+- `msg` - incoming message containing the payload from the previous step
+- `cfg` - step's configuration. At the moment contains only one property: `code` (the code, being executed)
+- `snapshot` - step's snapshot
+- `messages` - utility for convenient message creation
+- `emitter` user to emit messages and errors
+
+### Other Libraries/functions
+- `wait(numberOfMilliscondsToSleep)` - Utility function for sleeping
+- [`request`](https://github.com/request/request) - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request) so that it is pre-promisified)
+- `_` - [LoDash](https://lodash.com/)
 
 ## Code component usage Examples
 

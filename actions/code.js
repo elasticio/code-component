@@ -18,20 +18,30 @@ function wait(timeout) {
 // eslint-disable-next-line consistent-return,func-names
 exports.process = async function (msg, conf, snapshot) {
   const ctx = vm.createContext({
-    _,
+    // Node Globals
+    Buffer,
+    clearInterval,
+    clearTimeout,
     console,
+    exports: {},
+    global: {},
+    module: { exports },
     process,
     require,
-    setTimeout,
-    clearTimeout,
     setInterval,
-    clearInterval,
-    msg,
-    exports: {},
+    setTimeout,
+    URL,
+    URLSearchParams,
+
+    // Elasticio Specific Functionality
+    emitter: this,
     messages,
+    msg,
+
+    // Other Libraries
+    _,
     request,
     wait: wait.bind(this),
-    emitter: this,
   });
   this.logger.debug('Running the code %s', conf.code);
   vm.runInContext(conf.code, ctx, {

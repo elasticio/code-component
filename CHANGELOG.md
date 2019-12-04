@@ -1,3 +1,7 @@
+## 1.2.0 (Dec 12, 2019)
+* Add support for more node global objects
+* Update Sailor to version 2.5.1
+
 ## 1.0.1 (November 13, 2019)
 * Added snapshots support by passing 2 more arguments to `run` function: `cfg` and `snapshot`.
 * All log statements changed from `info` level to `debug`.
