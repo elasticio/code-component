@@ -22,6 +22,7 @@ However, don't let the simple look fool you - it has a full-fledged interface wi
 ## Available Variables and Libraries
 Here are the available variables and libraries that can be used within the context of execution. The most up-to-date list
 can always be found in be used within the context of execution or in `code.js` of the component. Below is a sample for the reference.
+Built-in Node.js global objects are also supported.
 
 ### Elastic.io Specific Functionality
 - `msg` - incoming message containing the payload from the previous step
