@@ -17,15 +17,16 @@ function wait(timeout) {
 
 // eslint-disable-next-line consistent-return,func-names
 exports.process = async function (msg, conf, snapshot) {
+  const vmExports = {};
   const ctx = vm.createContext({
     // Node Globals
     Buffer,
     clearInterval,
     clearTimeout,
     console,
-    exports: {},
+    exports: vmExports,
     global: {},
-    module: { exports },
+    module: { exports: vmExports },
     process,
     require,
     setInterval,
