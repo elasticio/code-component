@@ -1,3 +1,7 @@
+## 1.1.1 (January 22, 2020)
+
+* Update sailor version to 2.6.0
+
 ## 1.0.1 (November 13, 2019)
 * Added snapshots support by passing 2 more arguments to `run` function: `cfg` and `snapshot`.
 * All log statements changed from `info` level to `debug`.

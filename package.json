@@ -1,6 +1,6 @@
 {
   "name": "eio-code-component",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "elastic.io code component",
   "engines": {
     "node": "^10"
@@ -22,7 +22,7 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.5.1"
+    "elasticio-sailor-nodejs": "2.6.0"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
