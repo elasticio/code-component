@@ -1,3 +1,8 @@
+## 1.2.0 (May 8, 2020)
+
+* Update sailor version to 2.6.7
+* Add support for more node global objects
+
 ## 1.1.1 (January 30, 2020)
 
 * Update sailor version to 2.6.1
@@ -14,4 +19,3 @@ Fixed bug:
 ## 1.0.0 (August 2, 2019)
 
 * Initial release which includes a bunch of previous unversioned releases.
-
