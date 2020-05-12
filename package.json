@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "elastic.io code component",
   "engines": {
-    "node": ">12"
+    "node": ">=12"
   },
   "scripts": {
     "docker:build": "docker build -t elasticio/code-component:$(git log -n1 --format=%H) .",
