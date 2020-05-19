@@ -1,9 +1,9 @@
 {
   "name": "eio-code-component",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "elastic.io code component",
   "engines": {
-    "node": "12"
+    "node": ">=12.13.0"
   },
   "scripts": {
     "docker:build": "docker build -t elasticio/code-component:$(git log -n1 --format=%H) .",
@@ -22,7 +22,7 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.1"
+    "elasticio-sailor-nodejs": "2.6.7"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
