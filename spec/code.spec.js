@@ -93,7 +93,6 @@ describe('code test', () => {
       expect(emitter.emit.calledWith('end')).equal(true);
     });
 
-
     it('Processes hello code emitting', async () => {
       code = 'function run(message) {'
           + "this.emit('data', messages.newMessageWithBody({message: 'hello world'}));"
