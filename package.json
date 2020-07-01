@@ -22,7 +22,7 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.7"
+    "elasticio-sailor-nodejs": "2.6.13"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
