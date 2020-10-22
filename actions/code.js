@@ -44,7 +44,7 @@ exports.process = async function (msg, conf, snapshot) {
     request,
     wait: wait.bind(this),
   });
-  this.logger.debug('Running the code %s', conf.code);
+  this.logger.debug('Running the code...');
   vm.runInContext(conf.code, ctx, {
     displayErrors: true,
   });
@@ -70,7 +70,7 @@ exports.process = async function (msg, conf, snapshot) {
         }
         this.emit('end');
       } catch (e) {
-        this.logger.error('Promise failed', e);
+        this.logger.error('Promise failed');
         throw e;
       }
     }
