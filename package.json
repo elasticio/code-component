@@ -25,6 +25,7 @@
     "dateformat": "^3.0.3",
     "elasticio-node": "0.0.9",
     "elasticio-sailor-nodejs": "2.4.2",
+    "jsonata": "^1.8.4",
     "mongodb": "^3.3.4",
     "uuid": "^8.3.1"
   },
