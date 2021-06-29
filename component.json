@@ -1,5 +1,5 @@
 {
-    "title": "Node.js CodeMongo",
+    "title": "Node.js Code",
     "description": "You can write your own code and deploy it as part of integration process.",
     "buildType": "docker",
     "docsUrl": "http://go2.elastic.io/code-component",
