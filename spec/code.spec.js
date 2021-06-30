@@ -153,6 +153,5 @@ describe('code test', () => {
       const result = await action.process.call(self, {}, { code });
       expect(result.body).equal(200);
     });
-
   });
 });
