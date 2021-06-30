@@ -17,34 +17,23 @@ function wait(timeout) {
 
 // eslint-disable-next-line consistent-return,func-names
 exports.process = async function (msg, conf, snapshot) {
-  const vmExports = {};
   const ctx = vm.createContext({
-    // Node Globals
-    Buffer,
-    clearInterval,
-    clearTimeout,
+    _,
     console,
-    exports: vmExports,
-    global: {},
-    module: { exports: vmExports },
     process,
     require,
-    setInterval,
     setTimeout,
-    URL,
-    URLSearchParams,
-
-    // EIO Specific Functionality
-    emitter: this,
-    messages,
+    clearTimeout,
+    setInterval,
+    clearInterval,
     msg,
-
-    // Other Libraries
-    _,
+    exports: {},
+    messages,
     request,
     wait: wait.bind(this),
+    emitter: this,
   });
-  this.logger.debug('Running the code...');
+  this.logger.debug('Running the code %s', conf.code);
   vm.runInContext(conf.code, ctx, {
     displayErrors: true,
   });
@@ -70,7 +59,7 @@ exports.process = async function (msg, conf, snapshot) {
         }
         this.emit('end');
       } catch (e) {
-        this.logger.error('Promise failed');
+        this.logger.error('Promise failed', e);
         throw e;
       }
     }

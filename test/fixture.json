@@ -1,0 +1,167 @@
+{
+  "fixtures":{
+    "code":{
+      "msg":{
+        "oauth": {
+          "access_token": "d0a02fa8421442c1a584359d5c416dda",
+          "token_type": "bearer",
+          "refresh_token": "d53b599ec18f4098bce11def7289d92b"
+        },
+        "headers":{},
+        "body":{
+          "appId" : 22758086
+        }
+      },
+      "cfg": {
+        "appId" : 22758086,
+        "oauth": {
+          "access_token": "d0a02fa8421442c1a584359d5c416dda",
+          "token_type": "bearer",
+          "refresh_token": "d53b599ec18f4098bce11def7289d92b"
+        }
+      }
+    },
+    "hooks":{
+      "msg":{
+        "oauth": {
+          "access_token": "b4129822bf5a45dd814de90735553eb7",
+          "token_type": "bearer",
+          "refresh_token": "60fb6420b41d4ac4a1f97ee327e31523"
+        },
+        "headers":{},
+        "body":{
+          "ItemId" : 980503737
+        }
+      },
+      "cfg": {
+        "ItemId" : 980503737,
+        "url": "http://google.com",
+        "hook_type": ["item.update","item.create"],
+        "hookType": "app",
+        "ref_id": 21738954,
+        "oauth": {
+          "access_token": "b4129822bf5a45dd814de90735553eb7",
+          "token_type": "bearer",
+          "refresh_token": "60fb6420b41d4ac4a1f97ee327e31523"
+        }
+      }
+    },
+    "apps":{
+      "msg":{
+        "headers":{},
+        "body":{
+          "AppId" : 21727299
+        }
+      },
+      "cfg": {
+        "AppId" : 21727299
+      }
+    },
+    "spaces":{
+      "msg":{
+        "headers":{},
+        "body":{
+          "SpaceId" : 6269904
+        }
+      },
+      "cfg": {
+        "SpaceId" : 6269904
+      }
+    },
+    "files":{
+      "msg":{
+        "headers":{},
+        "body":{
+          "FileId" : 988492515
+        }
+      },
+      "cfg": {
+        "FileId" : 988492515
+      }
+    },
+    "comments":{
+      "msg":{
+        "headers":{},
+        "body":{
+          "CommentId" : 988492515
+        }
+      },
+      "cfg": {
+        "CommentId" : 988492515
+      }
+    },
+    "tasks":{
+      "msg":{
+        "headers":{},
+        "body":{
+          "taskId" : 988492515
+        }
+      },
+      "cfg": {
+        "taskId" : 988492515
+      }
+    },
+    "updateItem":{
+      "msg":{
+        "oauth": {
+          "access_token": "b4129822bf5a45dd814de90735553eb7",
+          "token_type": "bearer",
+          "refresh_token": "60fb6420b41d4ac4a1f97ee327e31523"
+        },
+        "headers":{},
+        "body": {
+          "appId" : 21732468,
+          "password":"eiusmod",
+          "username":"ex do",
+          "platform":"ipsum do",
+          "item_id":"1298870607",
+          "query" : "update"
+        }
+      },
+      "cfg": {
+        "oauth": {
+          "access_token": "b4129822bf5a45dd814de90735553eb7",
+          "token_type": "bearer",
+          "refresh_token": "60fb6420b41d4ac4a1f97ee327e31523"
+        },
+        "appId" : 21732468,
+        "password":"eiusmod",
+        "username":"ex do",
+        "platform":"ipsum do",
+        "item_id":"1298870607",
+        "query" : "update"
+      }
+    },
+    "getItemsbyApp":{
+      "msg":{
+        "oauth": {
+          "access_token": "1cd547105db34387a0a2d93a8ca033e7",
+          "token_type": "bearer",
+          "refresh_token": "60fb6420b41d4ac4a1f97ee327e31523"
+        },
+        "headers":{},
+        "body": {
+          "appId" : 21738954,
+          "password":"eiusmod",
+          "username":"ex do",
+          "platform":"ipsum do",
+          "item_id":"1298870607",
+          "query" : "update"
+        }
+      },
+      "cfg": {
+        "oauth": {
+          "access_token": "1cd547105db34387a0a2d93a8ca033e7",
+          "token_type": "bearer",
+          "refresh_token": "60fb6420b41d4ac4a1f97ee327e31523"
+        },
+        "appId" : 21738954,
+        "password":"eiusmod",
+        "username":"ex do",
+        "platform":"ipsum do",
+        "item_id":"1298870607",
+        "query" : "update"
+      }
+    }
+  }
+}
