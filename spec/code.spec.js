@@ -153,5 +153,26 @@ describe('code test', () => {
       const result = await action.process.call(self, {}, { code });
       expect(result.body).equal(200);
     });
+
+    it('Validate Node Globals are available', async () => {
+      code = `
+        async function run(msg, cfg, snapshot) {
+          console.log('Hello code, incoming message is msg=%j', msg);
+          let s = "abc";
+          let buff = Buffer.from(s);
+          let base64data = buff.toString('base64');
+          // Create message to be emitted
+          var data = messages.newMessageWithBody({message: base64data});
+          // Emit the data event
+          emitter.emit('data', data);
+          // No need to emit end
+          console.log('Finished execution');
+        }
+    `;
+
+      await action.process.call(self, { body: {} }, { code }, {});
+      const result = emitter.emit.getCall(0).args[1];
+      expect(result.body).deep.equal({ message: 'YWJj' });
+    });
   });
 });
