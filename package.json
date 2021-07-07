@@ -4,7 +4,7 @@
   "description": "elastic.io code component",
   "engines": {
     "node": "^10"
-},
+  },
   "scripts": {
     "docker:build": "docker build -t elasticio/code-component:$(git log -n1 --format=%H) .",
     "docker:push": "docker push elasticio/code-component:$(git log -n1 --format=%H)",
@@ -28,6 +28,7 @@
     "jsonata": "^1.8.4",
     "moment-timezone": "^0.5.33",
     "mongodb": "^3.3.4",
+    "tedious": "^11.0.9",
     "uuid": "^8.3.2",
     "xml-writer": "^1.7.0",
     "xml2js": "^0.4.23"
