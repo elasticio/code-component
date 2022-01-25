@@ -1,25 +1,124 @@
-version: 2 # use CircleCI 2.0
-jobs: # a collection of steps
-  test: # runs not using Workflows must have a `build` job as entry point
+version: 2.1
+parameters:
+  node-version:
+    type: string
+    default: "16.13.2"
+orbs:
+  node: circleci/node@5.0.0
+  slack: circleci/slack@4.5.3
+commands:
+  notify_on_failure:
+    steps:
+      - slack/notify:
+          event: fail
+          custom: |
+            {
+            	"blocks": [
+            		{
+            			"type": "section",
+            			"fields": [
+            				{
+            					"type": "mrkdwn",
+            					"text": ":red_circle: *$CIRCLE_PROJECT_REPONAME*:*$CIRCLE_TAG* build failed"
+            				}
+            			]
+            		},
+            		{
+            			"type": "actions",
+            			"elements": [
+            				{
+            					"type": "button",
+            					"text": {
+            						"type": "plain_text",
+            						"text": "View Job"
+            					},
+            					"url": "${CIRCLE_BUILD_URL}"
+            				}
+            			]
+            		}
+            	]
+            }
+  notify_on_pass:
+    steps:
+      - slack/notify:
+          event: pass
+          custom: |
+            {
+            	"blocks": [
+            		{
+            			"type": "section",
+            			"fields": [
+            				{
+            					"type": "mrkdwn",
+            					"text": ":tada: *$CIRCLE_PROJECT_REPONAME*:*$CIRCLE_TAG* was successfully built and published"
+            				}
+            			]
+            		},
+            		{
+            			"type": "actions",
+            			"elements": [
+            				{
+            					"type": "button",
+            					"text": {
+            						"type": "plain_text",
+            						"text": "View Job"
+            					},
+            					"url": "${CIRCLE_BUILD_URL}"
+            				}
+            			]
+            		}
+            	]
+            }
+
+jobs:
+  test:
     docker: # run the steps with Docker
-      - image: circleci/node:12-stretch # ...with this image as the primary container; this is where all `steps` will run
-    steps: # a collection of executable commands
-      - checkout # special step to check out source code to working directory
-      - restore_cache: # special step to restore the dependency cache
-          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: dependency-cache-{{ checksum "package.json" }}
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - node/install:
+          node-version: << pipeline.parameters.node-version >>
+      - node/install-packages:
+          cache-path: ./node_modules
+          override-ci-command: npm install
       - run:
-          name: Installing Dependencies
-          command: npm install
-      - save_cache: # special step to save the dependency cache
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run: # run tests
           name: test
           command: npm test
+
+  build:
+    docker:
+      - image: cimg/base:stable
+        user: root
+    steps:
+      - checkout
+      - node/install:
+          node-version: << pipeline.parameters.node-version >>
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      # build and push Docker image
+      - run:
+          name: Install component-build-helper lib
+          command: npm install -g @elastic.io/component-build-helper
+      - run:
+          name: Build and publish docker image
+          command: build_component_docker
+      - notify_on_failure
+      - notify_on_pass
 workflows:
-  version: 2
-  build_and_test:
+  test:
     jobs:
-      - test
+      - test:
+          name: "Running tests"
+          filters:
+            tags:
+              ignore: /.*/
+  publish_release:
+    jobs:
+      - build:
+          name: "Build and publish docker image"
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/
