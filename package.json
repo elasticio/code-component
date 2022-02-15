@@ -2,7 +2,7 @@
   "name": "eio-code-component",
   "description": "elastic.io code component",
   "engines": {
-    "node": "12.20.0"
+    "node": "15.8.0"
   },
   "scripts": {
     "docker:build": "docker build -t elasticio/code-component:$(git log -n1 --format=%H) .",
