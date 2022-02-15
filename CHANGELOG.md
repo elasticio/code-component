@@ -1,4 +1,4 @@
-## 1.2.7 (February 18, 2022)
+## 1.2.7 (February 15, 2022)
 
 * Updated Node engine to 15.8.0
 * 
