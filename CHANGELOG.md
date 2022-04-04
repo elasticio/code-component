@@ -1,3 +1,9 @@
+## 1.2.5 (April 08, 2022)
+
+* Update Sailor version to 2.6.27
+* Get rid of vulnerabilities in dependencies
+* Add component pusher job to Circle.ci config
+
 ## 1.2.7 (February 15, 2022)
 
 * Updated Node engine to 15.8.0
