@@ -1,6 +1,5 @@
 {
     "title": "Node.js Code",
-    "version": "1.2.7",
     "description": "You can write your own code and deploy it as part of integration process.",
     "docsUrl": "http://go2.elastic.io/code-component",
     "fields": {
