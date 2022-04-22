@@ -13,30 +13,30 @@ commands:
           event: fail
           custom: |
             {
-            	"blocks": [
-            		{
-            			"type": "section",
-            			"fields": [
-            				{
-            					"type": "mrkdwn",
-            					"text": ":red_circle: *$CIRCLE_PROJECT_REPONAME*:*$CIRCLE_TAG* build failed"
-            				}
-            			]
-            		},
-            		{
-            			"type": "actions",
-            			"elements": [
-            				{
-            					"type": "button",
-            					"text": {
-            						"type": "plain_text",
-            						"text": "View Job"
-            					},
-            					"url": "${CIRCLE_BUILD_URL}"
-            				}
-            			]
-            		}
-            	]
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": ":red_circle: *$CIRCLE_PROJECT_REPONAME*:*$CIRCLE_TAG* build failed"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
+                    }
+                  ]
+                }
+              ]
             }
   notify_on_pass:
     steps:
@@ -44,32 +44,31 @@ commands:
           event: pass
           custom: |
             {
-            	"blocks": [
-            		{
-            			"type": "section",
-            			"fields": [
-            				{
-            					"type": "mrkdwn",
-            					"text": ":tada: *$CIRCLE_PROJECT_REPONAME*:*$CIRCLE_TAG* was successfully built and published"
-            				}
-            			]
-            		},
-            		{
-            			"type": "actions",
-            			"elements": [
-            				{
-            					"type": "button",
-            					"text": {
-            						"type": "plain_text",
-            						"text": "View Job"
-            					},
-            					"url": "${CIRCLE_BUILD_URL}"
-            				}
-            			]
-            		}
-            	]
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": ":tada: *$CIRCLE_PROJECT_REPONAME*:*$CIRCLE_TAG* was successfully built and published"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
+                    }
+                  ]
+                }
+              ]
             }
-
 jobs:
   test:
     docker: # run the steps with Docker
@@ -82,9 +81,11 @@ jobs:
           cache-path: ./node_modules
           override-ci-command: npm install
       - run:
+          name: Audit Dependencies
+          command: npm audit --production --audit-level=high
+      - run:
           name: test
           command: npm test
-
   build:
     docker:
       - image: cimg/base:stable
