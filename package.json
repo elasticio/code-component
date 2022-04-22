@@ -21,7 +21,7 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.27"
+    "elasticio-sailor-nodejs": "2.6.26"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
@@ -29,7 +29,7 @@
     "eslint": "6.1.0",
     "eslint-config-airbnb": "18.0.1",
     "eslint-plugin-import": "2.18.2",
-    "mocha": "9.2.2",
+    "mocha": "6.2.0",
     "sinon": "7.4.1"
   }
 }
