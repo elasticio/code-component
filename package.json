@@ -22,15 +22,17 @@
     "@sentry/node": "^6.10.0",
     "@sentry/tracing": "^6.10.0",
     "axios": "^0.21.1",
+    "co": "^4.6.0",
+    "co-request": "^1.0.0",
     "dateformat": "^3.0.3",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.24",
+    "elasticio-sailor-nodejs": "^2.6.28",
     "json-beautify": "^1.1.1",
     "jsonata": "^1.8.4",
     "moment-timezone": "^0.5.33",
     "mongodb": "^3.3.4",
     "nodejs-base64": "^2.0.0",
-    "tedious": "^11.0.9",
+    "tedious": "^14.6.0",
     "uuid": "^8.3.2",
     "xml-writer": "^1.7.0",
     "xml2js": "^0.4.23"
@@ -41,7 +43,7 @@
     "eslint": "6.1.0",
     "eslint-config-airbnb": "18.0.1",
     "eslint-plugin-import": "2.18.2",
-    "mocha": "6.2.0",
+    "mocha": "^6.2.3",
     "sinon": "7.4.1"
   }
 }
