@@ -29,6 +29,7 @@
     "jsonata": "^1.8.4",
     "moment-timezone": "^0.5.33",
     "mongodb": "^3.3.4",
+    "nodejs-base64": "^2.0.0",
     "tedious": "^11.0.9",
     "uuid": "^8.3.2",
     "xml-writer": "^1.7.0",
