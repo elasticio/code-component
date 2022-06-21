@@ -100,7 +100,7 @@ jobs:
       # build and push Docker image
       - run:
           name: Install component-build-helper lib
-          command: npm install -g @elastic.io/component-build-helper
+          command: npm install -g @elastic.io/component-build-helper@0.0.4-beta.1
       - run:
           name: Build and publish docker image
           command: build_component_docker
