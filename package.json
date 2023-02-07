@@ -2,9 +2,10 @@
   "name": "eio-code-component",
   "description": "elastic.io code component",
   "engines": {
-    "node": "15.8.0"
+    "node": "18.x"
   },
   "scripts": {
+    "audit": "better-npm-audit audit --level high --production",
     "docker:build": "docker build -t elasticio/code-component:$(git log -n1 --format=%H) .",
     "docker:push": "docker push elasticio/code-component:$(git log -n1 --format=%H)",
     "lint": "eslint .",
@@ -21,10 +22,11 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.6.27"
+    "elasticio-sailor-nodejs": "2.7.1"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
+    "better-npm-audit": "3.7.3",
     "chai": "4.2.0",
     "eslint": "6.1.0",
     "eslint-config-airbnb": "18.0.1",
