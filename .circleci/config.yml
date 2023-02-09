@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   node-version:
     type: string
-    default: "16.13.2"
+    default: "18.13.0"
 orbs:
   node: circleci/node@5.0.0
   slack: circleci/slack@4.5.3
@@ -72,7 +72,7 @@ commands:
 jobs:
   test:
     docker: # run the steps with Docker
-      - image: cimg/base:stable
+      - image: cimg/node:18.13.0
     steps:
       - checkout
       - node/install:
@@ -82,13 +82,13 @@ jobs:
           override-ci-command: npm install
       - run:
           name: Audit Dependencies
-          command: npm audit --production --audit-level=high
+          command: npm run audit
       - run:
           name: test
           command: npm test
   build:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:18.13.0
         user: root
     steps:
       - checkout
@@ -118,6 +118,8 @@ workflows:
     jobs:
       - build:
           name: "Build and publish docker image"
+          context:
+            - componentspusher
           filters:
             branches:
               ignore: /.*/
