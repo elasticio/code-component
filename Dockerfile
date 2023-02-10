@@ -9,7 +9,7 @@ COPY README.md README.md
 
 FROM base AS dependencies
 RUN apk update && apk add --no-cache \
-    python \
+    python3 \
     g++ \
     make
 RUN npm install --production
