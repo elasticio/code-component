@@ -1,4 +1,4 @@
-FROM node:10-alpine AS base
+FROM node:18-alpine AS base
 WORKDIR /app
 RUN apk update && apk add --no-cache \
     bash
