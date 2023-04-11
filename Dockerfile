@@ -12,7 +12,7 @@ RUN apk update && apk add --no-cache \
     python3 \
     g++ \
     make
-RUN npm install --production
+RUN npm install --omit=dev
 
 FROM base AS release
 COPY --from=dependencies /app/node_modules ./node_modules
