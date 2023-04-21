@@ -1,3 +1,7 @@
+## 1.2.11 (April 21, 2023)
+
+* Add json-bigint library
+
 ## 1.2.10 (February 10, 2023)
 
 * Get rid of vulnerabilities in dependencies
