@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
+const axios = require('axios');
 const vm = require('vm');
 const { messages } = require('elasticio-node');
 const co = require('co');
@@ -42,6 +43,7 @@ exports.process = async function (msg, conf, snapshot) {
 
     // Other Libraries
     _,
+    axios,
     request,
     wait: wait.bind(this),
   });

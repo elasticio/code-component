@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const chai = require('chai');
+const { expect } = require('chai');
 const sinon = require('sinon');
 const logger = require('@elastic.io/component-logger')();
 const action = require('../actions/code');
