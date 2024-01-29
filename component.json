@@ -1,8 +1,16 @@
 {
     "title": "Node.js Code",
-    "version": "1.3.0-dev.1",
+    "version": "1.3.0-dev.2",
     "description": "You can write your own code and deploy it as part of integration process.",
-    "docsUrl": "http://go2.elastic.io/code-component",
+    "docsUrl": "https://docs.elastic.io/components/code/index.html",
+    "credentials": {
+        "fields": {
+            "auth": {
+                "required": false,
+                "viewClass": "HTTPAuthView"
+            }
+        }
+    },
     "fields": {
         "code": {
             "viewClass": "CodeFieldView",
