@@ -1,5 +1,4 @@
-function verify(credentials) {
-  return Promise.resolve(true);
+module.exports = async function verify(credentials) {
+  this.logger.info('The credentials always verifies successfully');
+  return true;
 };
-
-module.exports = verify;
