@@ -1,6 +1,6 @@
 {
   "title": "Node.js Code",
-  "version": "1.3.0-dev.10",
+  "version": "1.3.0-dev.11",
   "description": "You can write your own code and deploy it as part of integration process.",
   "docsUrl": "https://docs.elastic.io/components/code/index.html",
   "authClientTypes": [
