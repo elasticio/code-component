@@ -1,5 +1,6 @@
-## 1.3.0 (January 31, 2024)
-* Add HTTPAuthView credentials
+## 1.3.0 (February 7, 2024)
+* Add HTTPAuthView credentials. Creating auth clients might be required. Consult with your admin if the credentials can not be created.
+* Add `axios` to the list of available libraries
 
 ## 1.2.11 (April 21, 2023)
 * Add json-bigint library

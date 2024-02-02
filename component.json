@@ -1,47 +1,47 @@
 {
-    "title": "Node.js Code",
-    "version": "1.3.0-dev.4",
-    "description": "You can write your own code and deploy it as part of integration process.",
-    "docsUrl": "https://docs.elastic.io/components/code/index.html",
-    "authClientTypes": [
-        "oauth2",
-        "basic",
-        "api_key",
-        "noauth"
-    ],
-    "credentials": {
-        "fields": {
-            "auth": {
-                "required": false,
-                "viewClass": "HTTPAuthView"
-            }
-        }
-    },
+  "title": "Node.js Code",
+  "version": "1.3.0-dev.4",
+  "description": "You can write your own code and deploy it as part of integration process.",
+  "docsUrl": "https://docs.elastic.io/components/code/index.html",
+  "authClientTypes": [
+    "oauth2",
+    "basic",
+    "api_key",
+    "noauth"
+  ],
+  "credentials": {
     "fields": {
-        "code": {
-            "viewClass": "CodeFieldView",
-            "label": "Code",
-            "required": true,
-            "default": "// Please note only Node.js code is supported here\nasync function run(msg, cfg, snapshot) {\n\tthis.logger.info('Incoming message is %s', JSON.stringify(msg));\n\tconst body = { result : 'Hello world!' };\n\t// You can emit as many data messages as required\n\tawait this.emit('data', { body });\n\tthis.logger.info('Execution finished');\n}"
-        }
-    },
-    "actions": {
-        "execute": {
-            "main": "./actions/code.js",
-            "title": "Executes custom code",
-            "metadata" : {
-                "out" : {}
-            }
-        }
-    },
-    "triggers": {
-        "executeTrigger": {
-            "main": "./actions/code.js",
-            "title": "Executes custom code",
-            "type": "polling",
-            "metadata" : {
-                "out" : {}
-            }
-        }
+      "auth": {
+        "required": false,
+        "viewClass": "HTTPAuthView"
+      }
     }
+  },
+  "fields": {
+    "code": {
+      "viewClass": "CodeFieldView",
+      "label": "Code",
+      "required": true,
+      "default": "// Please note only Node.js code is supported here\nasync function run(msg, cfg, snapshot) {\n\tthis.logger.info('Incoming message is %s', JSON.stringify(msg));\n\tconst body = { result : 'Hello world!' };\n\t// You can emit as many data messages as required\n\tawait this.emit('data', { body });\n\tthis.logger.info('Execution finished');\n}"
+    }
+  },
+  "actions": {
+    "execute": {
+      "main": "./actions/code.js",
+      "title": "Executes custom code",
+      "metadata": {
+        "out": {}
+      }
+    }
+  },
+  "triggers": {
+    "executeTrigger": {
+      "main": "./actions/code.js",
+      "title": "Executes custom code",
+      "type": "polling",
+      "metadata": {
+        "out": {}
+      }
+    }
+  }
 }

@@ -3,221 +3,150 @@
 ## Table of Contents
 
 * [Description](#description)
+  * [Available Variables and Libraries](#available-variables-and-libraries)
+    * [Elastic.io Specific Functionality](#elasticio-specific-functionality)
+    * [Available Libraries/functions](#available-librariesfunctions)
 * [Credentials](#credentials)
 * [Actions](#actions)
-    * [Executes custom code](#execute-custom-code)
+  * [Executes custom code](#executes-custom-code-action)
+* [Triggers](#triggers)
+  * [Executes custom code](#executes-custom-code-trigger)
+* [Credentials](#credentials)
+* [Code component usage Examples](#code-component-usage-examples)
 
 ## Description
 
-A code component for the [elastic.io platform](https://www.elastic.io "elastic.io platform"), runs a piece of a JavaScript code inside your integration flow.
-
-Pretty much the same way that you would use any other component in our system. It is deployed by default to production,
-so no need to deploy it yourself (although you could if you have extended it yourself). In our Dashboard
-start building your integration and include the Code component as well. You will see a picture similar to the one below:
+The code component is a powerful feature of the [elastic.io platform](https://www.elastic.io "elastic.io platform") that allows you to run a piece of JavaScript code within your integration flow. 
+It functions just like any other component in our system. The code component is automatically deployed to production, so there is no need to deploy it yourself (although you can if you have extended it). 
+When building your integration in our Dashboard, simply include the Code component. 
+You will see a similar picture to the one below:
 
 ![image](https://github.com/elasticio/code-component/assets/8449044/577a8652-f264-490c-abec-c0cc8f6b6651)
 
 
-However, don't let the simple look fool you - it has a full-fledged interface with many very useful features like the ones you would expect from your favourite desktop developing tool:
+However, don't be fooled by its simple appearance - it has a full-fledged interface with many useful features, just like your favorite desktop development tool:
 
-* Syntax highlighting - a standard for any online real-time coding interface
-* Code auto-completion - again a standard that you got used to from your desktop tool
-* Support for number of variables and libraries within the context of the execution
-* Support latest ECMAScript standard
-* Run and troubleshoot within the designer interface.
+* Syntax highlighting - a standard feature for any online real-time coding interface
+* Code auto-completion - another standard feature that you are familiar with from desktop tools
+* Support for a variety of variables and libraries within the execution context
+* Compatibility with the latest ECMAScript standard
+* Ability to run and troubleshoot within the designer interface.
 
-## Available Variables and Libraries
-Here are the available variables and libraries that can be used within the context of execution. The most up-to-date list
-can always be found in be used within the context of execution or in `code.js` of the component. Below is a sample for the reference.
+### Available Variables and Libraries
+The code component provides access to the following variables and libraries within the execution context. 
+The most up-to-date list can always be found in the `code.js` file of the component. Below is a sample for reference. 
 Built-in Node.js global objects are also supported.
 
-### Elastic.io Specific Functionality
-- `msg` - incoming message containing the payload from the previous step
-- `cfg` - step's configuration. At the moment contains the following properties:
-  - `code` (the code, being executed)
+#### Elastic.io Specific Functionality
+`msg` - incoming message containing the payload from the previous step
+- `cfg` - step configuration, which currently includes the following properties:
+  - `code` (the code being executed)
   - `secretId` - the ID of the secret being used by the credentials
-  - `credentials` - The credentials section. Depending on the selected credentials type contains a set of credentials fields
-- `snapshot` - step's snapshot
+  - `credentials` - The credentials section. Depending on the selected credentials type, it contains a set of credential fields.
+- `snapshot` - step snapshot
 - `messages` - utility for convenient message creation
-- `emitter` user to emit messages and errors
+- `emitter` - used to emit messages and errors
 
-### Other Libraries/functions
+#### Available Libraries/functions
 - `wait(numberOfMilliscondsToSleep)` - Utility function for sleeping
-- [`request`](https://github.com/request/request) - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request) so that it is pre-promisified)
+- [`axios`](https://github.com/axios/axios) - A well-known HTTP Client [Documentation](https://www.npmjs.com/package/axios)
+- [`request`](https://github.com/request/request) - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request) so that it is pre-promisified). We recommend using `axios`. Support for `request` is maintained for backward compatibility only.
 - `_` - [Lodash](https://lodash.com/)
-
 
 ## Credentials
 
-To use the Gemini API, you’ll need an API key. If you don’t already have one, create a key in Google AI Studio.
-[Click here to create API Key](https://makersuite.google.com/app/apikey).
+Please note that the code component can solve a wide variety of tasks, ranging from basic data transformations to complex external API calls.
+Normally, you won't need any credentials working with the component. However, if you don't need any credentials, you can simply create and save the `No Auth` credentials.
 
-Please note - for the moment not all the regions over the world are supported. You might want to use VPN connection to create a key.
+We have introduced credentials of the same type that are used in the REST API component since using them for plain REST API calls is the most common use case across our platform.
+However, it doesn't mean that you can only use these credentials for REST API calls.
+Feel free to use them as needed if they fit your requirements.
 
-[A list of regions that are supported](https://ai.google.dev/available_regions)
+Code component supports 4 authorization types:
+* **No Auth** - Use this method if you don't need any credentials or if you want to work with any open REST API.
+* **Basic Auth** - Use this method to provide login credentials such as username/password.
+* **API Key Auth** - Use this method to provide an `API Key` to access a resource.
+* **OAuth2** - Use this method to provide `OAuth2` credentials to access a resource. Currently, the only implemented OAuth2 flow is the `Authorization code` flow.
 
-### Component credentials configuration fields:
-* **API Version** (string, optional) - Either `v1` or `v1beta` for now. Refer [the documentation](https://ai.google.dev/docs/api_versions) to find out the difference.
-* **API Key** (string, required) - API Token generated as described above
+To create `OAuth2` credential you have to choose Auth-client or create the new one. It must contain `Name`, `Client ID`, `Client Secret`, `Authorization Endpoint` and `Token Endpoint`.
+![alt text](https://user-images.githubusercontent.com/8449044/95571677-7e165480-0a31-11eb-9b45-915401d40e31.png "Creating auth client for Code component")
+*The example above shows how to add a new Auth-client to access the API.*
+
+To give you a better idea of how to use the different auth types:
+
+1. **No Auth** - No special usage is required.
+2. **Basic auth** - You can find the username/password fields within the `cfg.credentials` object:
+```js
+const { username } = cfg.credentials;
+const { password } = cfg.credentials;
+```
+3. **API Key Auth** - You can find the headerName/headerValue fields within the `cfg.credentials` object:
+```js
+const { headerName } = cfg.credentials;
+const { headerValue } = cfg.credentials;
+```
+4. **OAuth2** - All the available fields are within the `cfg.credentials` object. For Salesforce OAuth credentials, it would look like this:
+```json
+{
+  ...
+  "credentials": {
+    "access_token": "00DE0000000dwKc...25beUAzsBb6L4yTQUWwRf",
+    "refresh_token": "5Aep861rEpScxnNE66jGO...LPWsLPojH6C3hT.8L_",
+    "expires_in": 3600,
+    "undefined_params": {
+      "signature": "ehhgLZp7T...UrmmEE=",
+      "instance_url": "https://de0007100dwkcmai-dev-ed.my.salesforce.com",
+      "id": "https://login.salesforce.com/id/00DE0000917dwKcMAI/032481200092zqdAAA",
+      "issued_at": "1706879649168"
+    }
+  }
+}
+```
+
+Please note that using the OAuth2 mechanism can be tricky due to its nature. 
+If you need to use an OAuth2 mechanism for REST API calls, consider using our REST API component instead. 
+It handles all the routines such as refreshing tokens and retries. 
+Please refer to the following documentation for more information on how to use it:
+
+[Secrets Guide](https://docs.elastic.io/guides/secrets.html)
+
+Refer to the [Code component usage examples](#code-component-usage-examples) to find more examples of how to use each of the available credential types.
 
 ## Actions
 
-### Generate Content
+### Executes Custom Code Action
 
-Simply send a request to the Gemini API.
-The following input modes are supported:
-* Text-only input
-* Text-and-image input
-* Multi-turn conversations (chat)
-
-#### Configuration Fields
-
-* **Model** (dropdown, required) - Use the `gemini-pro` model for text-only prompts and `gemini-pro-vision` for image processing. You can't send a text-only prompt to the 'gemini-pro-vision' model. It is a dynamically-fetched list of models that support `generateContent` method.
-* **Safety categories to setup** (multi select dropdown, optional) - A list of [Safety categories](https://ai.google.dev/docs/safety_setting_gemini?hl=en). If you wish, you can configure an allowed threshold for each or some of them. Also refer to [List of available levels](https://ai.google.dev/api/rest/v1beta/SafetySetting?hl=en#HarmBlockThreshold)
-* **Temperature** (dropdown, optional) - Controls the randomness of the output. Values are in the range: [0.0, 1.0]. Higher values produce a more random and varied response. A temperature of zero will be deterministic.
-* **Max Output Tokens** (string, optional) - Specifies the maximum number of tokens that can be generated in the response. A token is approximately four characters. 100 tokens correspond to roughly 60-80 words.
-* **topK** (string, optional) - The topK parameter changes how the model selects tokens for output. A topK of 1 means the selected token is the most probable among all the tokens in the model's vocabulary (also called greedy decoding), while a topK of 3 means that the next token is selected from among the 3 most probable using the temperature. For each token selection step, the topK tokens with the highest probabilities are sampled. Tokens are then further filtered based on topP with the final token selected using temperature sampling.
-* **topP** (string, optional) - The topP parameter changes how the model selects tokens for output. Tokens are selected from the most to least probable until the sum of their probabilities equals the topP value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the topP value is 0.5, then the model will select either A or B as the next token by using the temperature and exclude C as a candidate. The default topP value is 0.95.
-* **stop_sequences** (string, optional) - Set a stop sequence to tell the model to stop generating content. A stop sequence can be any sequence of characters. Try to avoid using a sequence of characters that may appear in the generated content. Comma-separated list. E.g. 'weapon,drugs,antivaxxer'.
-
-Please be aware that any configuration options labeled as 'optional' will automatically utilize default values if left unspecified by the user. If you wish to customize these defaults, kindly consult the Gemini API documentation for precise information on the default values.
-
-Here is the description of the available parameters: https://ai.google.dev/docs/concepts?hl=en#model_parameters
+This action simply runs a piece of JavaScript code. 
+It is a very simple yet powerful action. 
+Please refer to the [Description](#description) for a full overview of the action's capabilities, as they are common for both the action and the trigger.
 
 #### Input Metadata
 
-Please refer to the [Input Schema file](./src/schemas/actions/generateContent.in.json) for the full list of metadata fields.
-
-As were said above, there are three modes available:
-##### Text-only input
-Use it for a simple text-based chatting.
-Input body example:
-```json
-{
-  "contents": [{
-    "parts": [{
-      "text": "Hello. How can you help me today?"
-    }]
-  }]
-}
-```
-
-##### Text-and-image input
-Use it for text-based chatting with possibility to sena an image for the Gemini API to analyze.
-
-The following MIME types are supported:
-- PNG - image/png
-- JPEG - image/jpeg
-- WEBP - image/webp
-- HEIC - image/heic
-- HEIF - image/heif
-
-An image must be converted to a in Base64 format string without any preceding prefix like `data:image/png;base64,`
-
-Input body example:
-```json
-{
-  "contents": [{
-    "parts": [
-      {
-        "text": "Describe what is in the photo"
-      },
-      {
-        "inline_data": {
-          "mime_type": "image/png",
-          "data": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAADMElEQVR4nOzVwQnAIBQFQYXff81RUkQCOyDj1YOPnbXWPmeTRef+/3O/OyBjzh3CD95BfqICMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMO0TAAD//2Anhf4QtqobAAAAAElFTkSuQmCC"
-        }
-      }
-    ]
-  }]
-}
-```
-
-##### Multi-turn conversations (chat)
-Using Gemini, you can build freeform conversations across multiple turns.
-
-Input body example:
-```json
-{
-  "contents": [
-    {
-      "role": "user",
-      "parts": [
-        {
-          "text": "Write the first line of a story about a magic backpack."
-        }
-      ]
-    },
-    {
-      "role": "model",
-      "parts": [
-        {
-          "text": "In the bustling city of Meadow brook, lived a young girl named Sophie. She was a bright and curious soul with an imaginative mind."
-        }
-      ]
-    },
-    {
-      "role": "user",
-      "parts": [
-        {
-          "text": "Can you set it in a quiet village in 1600s France?"
-        }
-      ]
-    }
-  ]
-}
-```
+No input metadata
 
 #### Output Metadata
 
-Please refer to the [Output Schema file](./src/schemas/actions/generateContent.out.json) for the full list of metadata fields
+No output metadata
 
 ## Triggers
 
+### Executes Custom Code Trigger
 
+This trigger simply runs a piece of JavaScript code. 
+It is a very simple yet powerful trigger. 
+Please refer to the [Description](#description) for a full overview of the trigger's capabilities, as they are common for both the action and the trigger.
 
-==============
-# code-component
+#### Input Metadata
 
-> A code component for the [elastic.io platform](https://www.elastic.io "elastic.io platform"), runs a piece of a JavaScript code inside your integration flow.
+No input metadata
 
-## Documentation
+#### Output Metadata
 
-Pretty much the same way that you would use any other component in our system. It is deployed by default to production,
-so no need to deploy it yourself (although you could if you have extended it yourself). In our Dashboard
-start building your integration and include the Code component as well. You will see a picture similar to the one below:
+No output metadata
 
-![image](https://user-images.githubusercontent.com/2523461/68778086-f3678280-0632-11ea-9e9c-d2a888fd5788.png)
+## Code component usage examples
 
-
-However, don't let the simple look fool you - it has a full-fledged interface with many very useful features like the ones you would expect from your favourite desktop developing tool:
-
- * Syntax highlighting - a standard for any online real-time coding interface
- * Code auto-completion - again a standard that you got used to from your desktop tool
- * Support for number of variables and libraries within the context of the execution
- * Support latest ECMAScript standard
- * Run and troubleshoot within the designer interface.
-
-## Available Variables and Libraries
-Here are the available variables and libraries that can be used within the context of execution. The most up-to-date list
-can always be found in be used within the context of execution or in `code.js` of the component. Below is a sample for the reference.
-Built-in Node.js global objects are also supported.
-
-### Elastic.io Specific Functionality
-- `msg` - incoming message containing the payload from the previous step
-- `cfg` - step's configuration. At the moment contains only one property: `code` (the code, being executed)
-- `snapshot` - step's snapshot
-- `messages` - utility for convenient message creation
-- `emitter` user to emit messages and errors
-
-### Other Libraries/functions
-- `wait(numberOfMilliscondsToSleep)` - Utility function for sleeping
-- [`request`](https://github.com/request/request) - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request) so that it is pre-promisified)
-- `_` - [Lodash](https://lodash.com/)
-
-## Code component usage Examples
-
-Use code is very simple, just do following:
+Use code is very simple. Just follow these steps:
 
 ```JavaScript
 async function run(msg, cfg, snapshot) {
@@ -229,15 +158,14 @@ async function run(msg, cfg, snapshot) {
 }
 ```
 
-Please note if you have a simple one-in-one-out function you can simply return a JSON object as a result
-of your function, it will be automatically emitted as data.
+Please note that if you have a simple one-in-one-out function, you can simply return a JSON object as the result of your function, and it will be automatically emitted as data.
 
 ## Common usage scenarios
 
 ### Doing complex data transformation
 
-[JSONata](http://jsonata.org/) is great however sometimes it's easier to do things in JavaScript, if you want to transorm
-an incoming message with code, just use following sample:
+While [JSONata](http://jsonata.org/) is a great tool, sometimes it's easier to perform tasks in JavaScript. 
+If you want to transform an incoming message with code, you can use the following example:
 
 ```JavaScript
 async function run(msg, cfg, snapshot) {
@@ -254,22 +182,14 @@ It's very simple to code a small REST API call out of the Code component, see fo
 
 ```JavaScript
 async function run(msg, cfg, snapshot) {
-  const res = await request.get({
-    uri: 'https://api.elastic.io/v1/users',
-    auth: {
-      user: process.env.ELASTICIO_API_USERNAME,
-      pass: process.env.ELASTICIO_API_KEY
-    },
-    json: true  
+  const username = process.env.ELASTICIO_API_USERNAME;
+  const password = process.env.ELASTICIO_API_KEY;
+  const { data } = await axios.get({
+    uri: 'https://api.elastic.io/v2/users/me',
+    headers: {
+      Authorization: `Basic ${Buffer.from(username + ':' + password).toString('base64')}`
+    }
   });
-  return {
-    fullName: res.body.first_name + " " + res.body.last_name,
-    email: res.body.email,
-    userID: res.body.id    
-  }
+  this.logger.info(`User data: ${JSON.stringify(data, null, 2)}`);
 }
 ```
-
-## Known issues and limitations
-
- - Credentials are not supported

@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 const _ = require('lodash');
 const axios = require('axios');
 const vm = require('vm');
@@ -18,7 +18,6 @@ function wait(timeout) {
 
 // eslint-disable-next-line consistent-return,func-names
 exports.process = async function (msg, conf, snapshot) {
-  this.logger.info(`cfg: ${JSON.stringify(conf, null, 2)}`);
   const vmExports = {};
   const ctx = vm.createContext({
     // Node Globals

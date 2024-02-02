@@ -4,8 +4,6 @@ const sinon = require('sinon');
 const logger = require('@elastic.io/component-logger')();
 const action = require('../actions/code');
 
-const { expect } = chai;
-
 let emitter;
 let self;
 let code;
@@ -173,6 +171,20 @@ describe('code test', () => {
       await action.process.call(self, { body: {} }, { code }, {});
       const result = emitter.emit.getCall(0).args[1];
       expect(result.body).deep.equal({ message: 'YWJj' });
+    });
+
+    it('axios lib', async () => {
+      code = `
+        async function run(msg, cfg, snapshot) {
+          this.logger.info('Incoming message is %s', JSON.stringify(msg));
+          const body = { result : 'Hello world!' };
+          const data = await axios.get('https://google.com');
+          this.logger.info('Execution finished');
+          return data.status;
+        }
+      `;
+      const result = await action.process.call(self, {}, { code });
+      expect(result.body).equal(200);
     });
   });
 });
