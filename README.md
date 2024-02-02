@@ -188,8 +188,9 @@ async function run(msg, cfg, snapshot) {
   const password = process.env.ELASTICIO_API_KEY;
   const { data } = await axios.get({
     uri: 'https://api.elastic.io/v2/users/me',
-    headers: {
-      Authorization: `Basic ${Buffer.from(username + ':' + password).toString('base64')}`
+    auth: {
+      username,
+      password
     }
   });
   this.logger.info(`User data: ${JSON.stringify(data, null, 2)}`);
