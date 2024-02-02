@@ -68,6 +68,8 @@ Code component supports 4 authorization types:
 * **API Key Auth** - Use this method to provide an `API Key` to access a resource.
 * **OAuth2** - Use this method to provide `OAuth2` credentials to access a resource. Currently, the only implemented OAuth2 flow is the `Authorization code` flow.
 
+**Credentials always verifies successfully.** The component is not any system-agnostic. This is why we can't do any meaningful verification.
+
 To create `OAuth2` credential you have to choose Auth-client or create the new one. It must contain `Name`, `Client ID`, `Client Secret`, `Authorization Endpoint` and `Token Endpoint`.
 ![alt text](https://user-images.githubusercontent.com/8449044/95571677-7e165480-0a31-11eb-9b45-915401d40e31.png "Creating auth client for Code component")
 *The example above shows how to add a new Auth-client to access the API.*
