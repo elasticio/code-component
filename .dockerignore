@@ -1,6 +1,0 @@
-.circleci
-.git
-node_models
-spec
-circle.yml
-Gruntfile.js
