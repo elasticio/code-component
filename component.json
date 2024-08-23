@@ -1,6 +1,6 @@
 {
     "title": "Node.js Code(ThatAPP)",
-    "version": "1.2.9",
+    "version": "2.1",
     "description": "You can write your own code and deploy it as part of integration process.",
     "docsUrl": "http://go2.elastic.io/code-component",
     "fields": {
