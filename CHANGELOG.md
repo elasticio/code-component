@@ -1,3 +1,16 @@
+
+## 1.2.11 (April 21, 2023)
+
+* Add json-bigint library
+
+## 1.2.10 (February 10, 2023)
+
+* Get rid of vulnerabilities in dependencies
+
+## 1.2.9 (February 10, 2023)
+
+* Update Sailor version to 2.7.1
+
 ## 1.2.8 (April 08, 2022)
 
 * Update Sailor version to 2.6.27
