@@ -19,11 +19,26 @@
   "author": "elastic.io GmbH",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "@sentry/node": "^7.54.0",
+    "@sentry/tracing": "^7.54.0",
+    "axios": "^1.4.0",
     "co": "4.6.0",
     "co-request": "1.0.0",
+    "dateformat": "^3.0.3",
     "elasticio-node": "0.0.9",
+    "json-beautify": "^1.1.1",
+    "jsonata": "^1.8.4",
+    "moment-timezone": "^0.5.33",
+    "mongodb": "^4.13.0",
+    "nodejs-base64": "^2.0.0",
+    "oauth-1.0a": "^2.2.6",
+    "tedious": "^14.6.0",
+    "uuid": "^8.3.2",
+    "xml-writer": "^1.7.0",
+    "xml2js": "^0.4.23",
     "elasticio-sailor-nodejs": "2.7.1",
     "json-bigint": "1.0.0"
+
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
