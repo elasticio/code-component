@@ -22,7 +22,7 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-node": "0.0.9",
-    "elasticio-sailor-nodejs": "2.7.4",
+    "elasticio-sailor-nodejs": "2.7.5",
     "json-bigint": "1.0.0",
     "strong-soap": "4.1.10"
   },
