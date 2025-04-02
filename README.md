@@ -34,6 +34,7 @@ Built-in Node.js global objects are also supported.
 ### Other Libraries/functions
 - `wait(numberOfMilliscondsToSleep)` - Utility function for sleeping
 - [`request`](https://github.com/request/request) - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request) so that it is pre-promisified)
+- [`strong-soap`](https://github.com/loopbackio/strong-soap) - SOAP client for invoking web services
 - `_` - [Lodash](https://lodash.com/)
 
 ## Code component usage Examples

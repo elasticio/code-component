@@ -22,7 +22,8 @@
     "co": "4.6.0",
     "co-request": "1.0.0",
     "elasticio-sailor-nodejs": "2.7.7",
-    "json-bigint": "1.0.0"
+    "json-bigint": "1.0.0",
+    "strong-soap": "5.0.7"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
