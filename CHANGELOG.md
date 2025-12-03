@@ -1,4 +1,4 @@
-## 1.2.12 (December 03, 2025)
+## 1.2.13 (December 03, 2025)
 
 * Update Sailor version to 2.7.7
 * Remove unused `elasticio-node` dependency
