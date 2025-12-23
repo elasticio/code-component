@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   node-version:
     type: string
-    default: "18.13.0"
+    default: "24.10.0"
 orbs:
   node: circleci/node@5.0.0
   slack: circleci/slack@4.5.3
@@ -71,8 +71,8 @@ commands:
             }
 jobs:
   test:
-    docker: # run the steps with Docker
-      - image: cimg/node:18.13.0
+    docker:
+      - image: cimg/node:24.10.0
     steps:
       - checkout
       - node/install:
@@ -88,14 +88,14 @@ jobs:
           command: npm test
   build:
     docker:
-      - image: cimg/node:18.13.0
+      - image: cimg/node:24.10.0
         user: root
     steps:
       - checkout
       - node/install:
           node-version: << pipeline.parameters.node-version >>
       - setup_remote_docker:
-          version: 19.03.13
+          version: default
           docker_layer_caching: true
       # build and push Docker image
       - run:

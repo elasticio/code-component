@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
 const vm = require('vm');
-const { messages } = require('elasticio-node');
 const co = require('co');
 const request = require('co-request');
 
@@ -14,6 +13,11 @@ function wait(timeout) {
     this.logger.debug('Start wait sec=%s', timeout);
   });
 }
+
+const messages = {
+  newMessageWithBody: (body) => ({ body, headers: {} }),
+  newEmptyMessage: () => ({ body: {}, headers: {} }),
+};
 
 // eslint-disable-next-line consistent-return,func-names
 exports.process = async function (msg, conf, snapshot) {

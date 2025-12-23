@@ -1,3 +1,9 @@
+## 1.2.13 (December 03, 2025)
+
+* Update Sailor version to 2.7.7
+* Remove unused `elasticio-node` dependency
+* Update the Node engine to version 24.x.
+
 ## 1.2.12 (September 12, 2024)
 
 * Update Sailor version to 2.7.3
