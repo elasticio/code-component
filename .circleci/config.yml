@@ -99,11 +99,26 @@ jobs:
           docker_layer_caching: true
       # build and push Docker image
       - run:
+          name: Debug - Show tag and environment
+          command: |
+            echo "Tag: $CIRCLE_TAG"
+            echo "Repository: $CIRCLE_PROJECT_REPONAME"
+            echo "Build URL: $CIRCLE_BUILD_URL"
+      - run:
           name: Install component-build-helper lib
-          command: npm install -g @elastic.io/component-build-helper
+          command: |
+            npm install -g @elastic.io/component-build-helper
+            echo "Installed version:"
+            build_component_docker --version 2>&1 || component-build-helper --version 2>&1 || echo "Version check not available"
       - run:
           name: Build and publish docker image
-          command: build_component_docker
+          command: |
+            set -e
+            echo "Running build_component_docker..."
+            build_component_docker || (echo "build_component_docker failed with exit code $?" && exit 1)
+            echo "Checking Docker images..."
+            docker images elasticio/code-component || echo "No images found"
+            echo "Checking if image was pushed (this would show in logs above if successful)..."
       - notify_on_failure
       - notify_on_pass
 workflows:

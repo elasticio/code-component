@@ -1,18 +1,14 @@
 {
-  "GHSA-27h2-hvpr-p74q": {
+  "GHSA-fjxv-7rqg-78g4": {
     "active": true,
-     "notes": "We don't use verify function from jsonwebtoken, so not affected"
+    "notes": "This vulnerability is in form-data used transitively via deprecated 'request' library. We do not use form-data directly. Waiting on upstream libraries to upgrade."
   },
-  "GHSA-wc69-rhjr-hc9g": {
+  "GHSA-869p-cjfg-cm3x": {
     "active": true,
-    "notes": "Bunyan library set only new Date to momentjs as parameter"
+    "notes": "jws vulnerability in jsonwebtoken (via @elastic.io/maester-client -> elasticio-sailor-nodejs). This is a transitive dependency from sailor. Waiting on upstream libraries to upgrade."
   },
-  "GHSA-hrpp-h998-j3pp": {
+  "GHSA-6rw7-vpxm-498p": {
     "active": true,
-    "notes": "There is no query-string user input in sailor"
-  },
-    "GHSA-fjxv-7rqg-78g4": {
-      "active": true,
-      "notes": "This vulnerability is in form-data used transitively via deprecated 'request' library. We do not use form-data directly. Waiting on upstream libraries to upgrade."
-    }
+    "notes": "qs vulnerability in request (via co-request). This is a transitive dependency. The deprecated 'request' library is used by co-request. Waiting on upstream libraries to upgrade."
+  }
 }
