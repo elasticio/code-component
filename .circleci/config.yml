@@ -121,6 +121,10 @@ jobs:
             echo "CIRCLE_TAG: $CIRCLE_TAG"
             echo "CIRCLE_PROJECT_REPONAME: $CIRCLE_PROJECT_REPONAME"
             echo "CIRCLE_BRANCH: $CIRCLE_BRANCH"
+            echo "DRY_RUN: ${DRY_RUN:-not set}"
+            echo "DOCKER_USERNAME: ${DOCKER_USERNAME:-not set}"
+            echo "All environment variables containing 'DRY' or 'PUSH':"
+            env | grep -iE 'DRY|PUSH' || echo "None found"
             echo "---"
             echo "Package.json info:"
             cat package.json | grep -E '"name"|"repository"' || echo "Could not read package.json"
@@ -129,6 +133,9 @@ jobs:
             cat component.json | grep '"version"' || echo "Could not read component.json"
             echo "---"
             echo "Running build_component_docker with verbose output..."
+            echo "Ensuring DRY_RUN is disabled for push..."
+            unset DRY_RUN
+            echo "DRY_RUN after unset: ${DRY_RUN:-unset/empty (good)}"
             build_component_docker 2>&1 | tee /tmp/build_output.log
             EXIT_CODE=$?
             echo "build_component_docker exited with code: $EXIT_CODE"

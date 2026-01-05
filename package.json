@@ -1,5 +1,5 @@
 {
-  "name": "eio-code-component",
+  "name": "code-component",
   "description": "elastic.io code component",
   "engines": {
     "node": "24.x"
