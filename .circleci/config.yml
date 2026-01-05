@@ -103,7 +103,10 @@ jobs:
           command: npm install -g @elastic.io/component-build-helper
       - run:
           name: Build and publish docker image
-          command: build_component_docker
+          command: |
+            set -e
+            unset DRY_RUN
+            build_component_docker
       - notify_on_failure
       - notify_on_pass
 workflows:
