@@ -109,7 +109,10 @@ jobs:
           command: |
             npm install -g @elastic.io/component-build-helper
             echo "Installed version:"
-            build_component_docker --version 2>&1 || component-build-helper --version 2>&1 || echo "Version check not available"
+            npm list -g @elastic.io/component-build-helper 2>&1 || echo "Version check failed"
+            echo "---"
+            echo "Checking build_component_docker help/options:"
+            build_component_docker --help 2>&1 || build_component_docker -h 2>&1 || echo "No help available"
       - run:
           name: Build and publish docker image
           command: |
@@ -117,17 +120,32 @@ jobs:
             echo "Environment check:"
             echo "CIRCLE_TAG: $CIRCLE_TAG"
             echo "CIRCLE_PROJECT_REPONAME: $CIRCLE_PROJECT_REPONAME"
+            echo "CIRCLE_BRANCH: $CIRCLE_BRANCH"
             echo "---"
-            echo "Running build_component_docker..."
-            build_component_docker
+            echo "Package.json info:"
+            cat package.json | grep -E '"name"|"repository"' || echo "Could not read package.json"
+            echo "---"
+            echo "Component.json version:"
+            cat component.json | grep '"version"' || echo "Could not read component.json"
+            echo "---"
+            echo "Running build_component_docker with verbose output..."
+            build_component_docker 2>&1 | tee /tmp/build_output.log
             EXIT_CODE=$?
             echo "build_component_docker exited with code: $EXIT_CODE"
             echo "---"
             echo "Checking local Docker images..."
             docker images elasticio/code-component || echo "No images found"
             echo "---"
+            echo "Checking all Docker images with 'code' in name..."
+            docker images | grep code || echo "No code images found"
+            echo "---"
             echo "Checking if image was pushed to Docker Hub..."
             docker manifest inspect elasticio/code-component:$CIRCLE_TAG 2>&1 && echo "✓ Image found on Docker Hub!" || echo "✗ Image NOT found on Docker Hub"
+            echo "---"
+            echo "Checking build_component_docker output for push messages..."
+            if [ -f /tmp/build_output.log ]; then
+              grep -i "push\|publish\|upload" /tmp/build_output.log || echo "No push-related messages found in output"
+            fi
       - notify_on_failure
       - notify_on_pass
 workflows:
