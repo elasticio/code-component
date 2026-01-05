@@ -114,11 +114,20 @@ jobs:
           name: Build and publish docker image
           command: |
             set -e
+            echo "Environment check:"
+            echo "CIRCLE_TAG: $CIRCLE_TAG"
+            echo "CIRCLE_PROJECT_REPONAME: $CIRCLE_PROJECT_REPONAME"
+            echo "---"
             echo "Running build_component_docker..."
-            build_component_docker || (echo "build_component_docker failed with exit code $?" && exit 1)
-            echo "Checking Docker images..."
+            build_component_docker
+            EXIT_CODE=$?
+            echo "build_component_docker exited with code: $EXIT_CODE"
+            echo "---"
+            echo "Checking local Docker images..."
             docker images elasticio/code-component || echo "No images found"
-            echo "Checking if image was pushed (this would show in logs above if successful)..."
+            echo "---"
+            echo "Checking if image was pushed to Docker Hub..."
+            docker manifest inspect elasticio/code-component:$CIRCLE_TAG 2>&1 && echo "✓ Image found on Docker Hub!" || echo "✗ Image NOT found on Docker Hub"
       - notify_on_failure
       - notify_on_pass
 workflows:
