@@ -10,5 +10,9 @@
   "GHSA-6rw7-vpxm-498p": {
     "active": true,
     "notes": "qs vulnerability in request (via co-request). This is a transitive dependency. The deprecated 'request' library is used by co-request. Waiting on upstream libraries to upgrade."
+  },
+  "GHSA-43fc-jf86-j433": {
+    "active": true,
+    "notes": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig. This is a transitive dependency. Waiting on upstream libraries to upgrade."
   }
 }
