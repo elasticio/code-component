@@ -1,6 +1,10 @@
-## 1.2.14 (February 13, 2026)
+## 1.2.15 (February 13, 2026)
 
 * Add `strong-soap` v5.0.7 lib support
+
+## 1.2.14 (February 04, 2026)
+
+* Update Sailor version to 2.7.8
 
 ## 1.2.13 (December 03, 2025)
 
@@ -33,7 +37,7 @@
 ## 1.2.7 (February 15, 2022)
 
 * Updated Node engine to 15.8.0
-* 
+*
 * ## 1.2.6 (November 26, 2021)
 
 * Updated sailor version to 2.6.26
