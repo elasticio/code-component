@@ -14,5 +14,17 @@
   "GHSA-43fc-jf86-j433": {
     "active": true,
     "notes": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig. This is a transitive dependency. Waiting on upstream libraries to upgrade."
+  },
+    "GHSA-3ppc-4f35-3m26": {
+    "active": true,
+    "notes": "minimatch ReDoS via repeated wildcards. minimatch is only used with static, developer-defined glob patterns in this project; no user input is passed as patterns. Waiting on upstream libraries to upgrade."
+  },
+  "GHSA-7r86-cg39-jmmj": {
+    "active": true,
+    "notes": "minimatch ReDoS via multiple non-adjacent GLOBSTAR segments. minimatch is only used with static, developer-defined glob patterns in this project; no user input is passed as patterns. Waiting on upstream libraries to upgrade."
+  },
+  "GHSA-23c5-xmqv-rm74": {
+    "active": true,
+    "notes": "minimatch ReDoS via nested extglobs. minimatch is only used with static, developer-defined glob patterns in this project; no user input is passed as patterns. Waiting on upstream libraries to upgrade."
   }
 }
