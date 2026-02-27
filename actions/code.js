@@ -3,6 +3,7 @@ const _ = require('lodash');
 const vm = require('vm');
 const co = require('co');
 const request = require('co-request');
+const { soap } = require('strong-soap');
 
 function wait(timeout) {
   return new Promise((ok) => {
@@ -46,6 +47,7 @@ exports.process = async function (msg, conf, snapshot) {
     // Other Libraries
     _,
     request,
+    soap,
     wait: wait.bind(this),
   });
   this.logger.debug('Running the code...');

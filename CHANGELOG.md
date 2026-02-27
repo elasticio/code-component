@@ -1,3 +1,7 @@
+## 1.2.15 (February 27, 2026)
+
+* Add `strong-soap` v5.0.7 lib support
+
 ## 1.2.14 (February 04, 2026)
 
 * Update Sailor version to 2.7.8
