@@ -1,4 +1,4 @@
-## 1.2.15 (February 13, 2026)
+## 1.2.15 (February 27, 2026)
 
 * Add `strong-soap` v5.0.7 lib support
 
