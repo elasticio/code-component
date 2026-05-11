@@ -47,8 +47,6 @@
     "serialize-javascript": "^7.0.5",
     "diff": "^9.0.0",
     "jws": "^4.0.1",
-    "@xmldom/xmldom": "^0.9.10",
-    "uuid": "9.0.1",
-    "file-type": "12.4.2"
+    "@xmldom/xmldom": "^0.9.10"
   }
 }
