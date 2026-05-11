@@ -1,3 +1,10 @@
+## 1.2.16 (May 11, 2026)
+
+* Added `nodemailer` `8.0.7` lib support
+* Updated the following dependencies:
+ * axios `1.13.5` -> `1.16.0`
+ * strong-soap `5.0.2` -> `5.0.9`
+
 ## 1.2.15 (February 27, 2026)
 
 * Add `strong-soap` v5.0.7 lib support
