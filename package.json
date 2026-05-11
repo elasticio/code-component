@@ -24,7 +24,8 @@
     "strong-soap": "5.0.9",
     "elasticio-sailor-nodejs": "2.7.8",
     "json-bigint": "1.0.0",
-    "lodash": "4.18.1"
+    "lodash": "4.18.1",
+    "nodemailer": "8.0.7"
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
@@ -47,7 +48,7 @@
     "diff": "^9.0.0",
     "jws": "^4.0.1",
     "@xmldom/xmldom": "^0.9.10",
-    "uuid": "^14.0.0",
-    "file-type": "^22.0.1"
+    "uuid": "9.0.1",
+    "file-type": "12.4.2"
   }
 }

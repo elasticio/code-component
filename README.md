@@ -36,6 +36,7 @@ Built-in Node.js global objects are also supported.
 - [`request`](https://github.com/request/request) - Http Client (wrapped in `co` - [this library](https://www.npmjs.com/package/co-request) so that it is pre-promisified)
 - [`strong-soap`](https://github.com/loopbackio/strong-soap) - SOAP client for invoking web services
 - `_` - [Lodash](https://lodash.com/)
+- [`nodemailer`](https://nodemailer.com/) - Library for sending emails from Node.js
 
 ## Code component usage Examples
 
