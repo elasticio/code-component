@@ -1,7 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
 const vm = require('vm');
 const co = require('co');
+const nodemailer = require('nodemailer');
 const request = require('co-request');
 const { soap } = require('strong-soap');
 
@@ -46,6 +46,7 @@ exports.process = async function (msg, conf, snapshot) {
 
     // Other Libraries
     _,
+    nodemailer,
     request,
     soap,
     wait: wait.bind(this),
