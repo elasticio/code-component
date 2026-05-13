@@ -129,6 +129,54 @@ async function run(msg, cfg, snapshot) {
 }
 ```
 
+### Sending an email with nodemailer
+
+The Code component includes [`nodemailer`](https://nodemailer.com/) for sending emails. Here is an example of how to use it:
+
+```JavaScript
+async function run(msg, cfg, snapshot) {
+  this.logger.info('Verifying nodemailer support...');
+  
+  // 1. Check if the library is available in the context
+  if (typeof nodemailer === 'undefined') {
+    throw new Error('nodemailer library was not found in the execution context');
+  }
+  // 2. Create a test transporter using Ethereal (safe for testing)
+  const testAccount = await nodemailer.createTestAccount();
+  const transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+    auth: {
+      user: testAccount.user,
+      pass: testAccount.pass,
+    },
+  });
+  // 3. Attempt to send a test email
+  const info = await transporter.sendMail({
+    from: '"Tester" <test@elastic.io>',
+    to: "bar@example.com",
+    subject: "Nodemailer Test from elastic.io ✔",
+    text: "Nodemailer is correctly installed and accessible!",
+    html: "<b>Nodemailer is correctly installed and accessible!</b>",
+    attachments: [
+      {
+        filename: 'test.txt',
+        content: 'Hello world!'
+      }
+    ]
+  });
+  this.logger.info("Email sent successfully! Message ID: %s", info.messageId);
+  const previewUrl = nodemailer.getTestMessageUrl(info);
+  this.logger.info("You can view the test email at: %s", previewUrl);
+  await this.emit('data', { body: {
+    status: 'Nodemailer is working', 
+    messageId: info.messageId, 
+    previewUrl 
+  }});
+}
+```
+
 ## Known issues and limitations
 
  - Credentials are not supported
