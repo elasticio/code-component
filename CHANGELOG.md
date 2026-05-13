@@ -1,4 +1,4 @@
-## 1.2.16 (May 11, 2026)
+## 1.2.16 (May 13, 2026)
 
 * Added `nodemailer` `8.0.7` lib support
 * Updated the following dependencies:
