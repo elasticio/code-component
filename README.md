@@ -8,7 +8,7 @@ Pretty much the same way that you would use any other component in our system. I
 so no need to deploy it yourself (although you could if you have extended it yourself). In our Dashboard
 start building your integration and include the Code component as well. You will see a picture similar to the one below:
 
-![image](https://github.com/user-attachments/assets/fa84cf12-6c47-4c33-b7f7-16b4b8372cef)
+![image](https://github.com/user-attachments/assets/c248ee0a-1277-460d-b3f7-196b134c97f5)
 
 
 However, don't let the simple look fool you - it has a full-fledged interface with many very useful features like the ones you would expect from your favourite desktop developing tool:
