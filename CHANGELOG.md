@@ -1,3 +1,12 @@
+## 1.2.17 (August 27, 2026)
+
+* Updated the following dependencies:
+ * elasticio-sailor-nodejs `2.7.8` -> `2.7.9`
+ * nodemailer `8.0.7` -> `9.0.5`
+ * strong-soap `5.0.9` -> `6.0.2`
+ * mocha `11.7.5` -> `11.8.0`
+ * sinon `22.0.0` -> `22.1.0`
+
 ## 1.2.16 (May 13, 2026)
 
 * Added `nodemailer` `8.0.7` lib support
