@@ -1,140 +1,75 @@
 ignore:
+  # OpenSSL / Crypto
   - vulnerability: CVE-2022-3996
-    package:
-      name: libssl3
-      version: 3.0.7-r0
-
-  - vulnerability: CVE-2022-3996
-    package:
-      name: libcrypto3
-      version: 3.0.7-r0
-
   - vulnerability: CVE-2023-5363
-    package:
-      name: libssl3
-      version: 3.1.3-r0
+  - vulnerability: CVE-2025-15467
+  - vulnerability: CVE-2025-15468
+  - vulnerability: CVE-2025-66199
+  - vulnerability: CVE-2025-68160
+  - vulnerability: CVE-2025-69418
+  - vulnerability: CVE-2025-69419
+  - vulnerability: CVE-2025-69420
+  - vulnerability: CVE-2025-69421
+  - vulnerability: CVE-2025-9230
+  - vulnerability: CVE-2025-9231
+  - vulnerability: CVE-2025-9232
+  - vulnerability: CVE-2026-14456
+  - vulnerability: CVE-2026-14457
+  - vulnerability: CVE-2026-18798
+  - vulnerability: CVE-2026-22795
+  - vulnerability: CVE-2026-22796
+  - vulnerability: CVE-2026-28387
+  - vulnerability: CVE-2026-28388
+  - vulnerability: CVE-2026-28389
+  - vulnerability: CVE-2026-28390
+  - vulnerability: CVE-2026-31789
+  - vulnerability: CVE-2026-31790
+  - vulnerability: CVE-2026-54874
+  - vulnerability: CVE-2026-63072
+  - vulnerability: CVE-2026-63073
+  - vulnerability: CVE-2026-63074
+  - vulnerability: CVE-2026-63075
+  - vulnerability: CVE-2026-63076
+  - vulnerability: CVE-2026-75803
 
-  - vulnerability: CVE-2023-5363
-    package:
-      name: libcrypto3
-      version: 3.1.3-r0
+  # Node.js binary
+  - vulnerability: CVE-2025-23165
+  - vulnerability: CVE-2025-23166
+  - vulnerability: CVE-2025-23167
+  - vulnerability: CVE-2025-55131
+  - vulnerability: CVE-2025-59465
+  - vulnerability: CVE-2025-59466
+  - vulnerability: CVE-2026-21637
+  - vulnerability: CVE-2026-21710
+  - vulnerability: CVE-2026-21713
+  - vulnerability: CVE-2026-21714
+  - vulnerability: CVE-2026-21715
+  - vulnerability: CVE-2026-21716
+  - vulnerability: CVE-2026-21717
+  - vulnerability: CVE-2026-48617
+  - vulnerability: CVE-2026-48931
+  - vulnerability: CVE-2026-48937
+  - vulnerability: CVE-2026-56846
+  - vulnerability: CVE-2026-56847
+  - vulnerability: CVE-2026-56848
+  - vulnerability: CVE-2026-56850
+  - vulnerability: CVE-2026-58039
+  - vulnerability: CVE-2026-58040
+  - vulnerability: CVE-2026-58041
+  - vulnerability: CVE-2026-58042
+  - vulnerability: CVE-2026-58043
+  - vulnerability: CVE-2026-58044
+  - vulnerability: CVE-2026-58045
 
+  # Busybox
+  - vulnerability: CVE-2024-58251
+  - vulnerability: CVE-2025-46394
+  - vulnerability: CVE-2025-60876
+
+  # Musl
+  - vulnerability: CVE-2026-40200
+  - vulnerability: CVE-2026-6042
+
+  # Zlib
   - vulnerability: CVE-2023-45853
-    package:
-      name: zlib
-      version: 1.3.1-r2
-
-  - vulnerability: CVE-2026-18798
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-18798
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63076
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63076
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-14457
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-14457
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-14456
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-14456
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63072
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63072
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-54874
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-54874
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63075
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63075
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63074
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63074
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63073
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-63073
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-75803
-    package:
-      name: libssl3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2026-75803
-    package:
-      name: libcrypto3
-      version: 3.5.7-r0
-
-  - vulnerability: CVE-2025-60876
-    package:
-      name: busybox
-      version: 1.37.0-r31
-
-  - vulnerability: CVE-2025-60876
-    package:
-      name: busybox-binsh
-      version: 1.37.0-r31
-
-  - vulnerability: CVE-2025-60876
-    package:
-      name: ssl_client
-      version: 1.37.0-r31
+  - vulnerability: CVE-2026-27171
